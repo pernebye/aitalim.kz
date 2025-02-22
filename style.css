@@ -1,0 +1,2457 @@
+/************************************************************
+ * style.css (полная версия, включая старый код + новые блоки)
+ ************************************************************/
+
+/*------------------------------
+  1) БАЗОВЫЕ ПЕРЕМЕННЫЕ ТЕМЫ
+------------------------------*/
+:root {
+    /* Цветовая схема для светлой темы */
+    --color-brand-purple: #BB02FF;      /* брендовый фиолетовый */
+    --color-brand-blue: #2C88F7;        /* брендовый голубой */
+    --color-secondary-blue: #D5E7FD;    /* второстепенный голубой (светлая тема) */
+    --color-bg-lower: #F8F8F8;          /* нижний фоновый */
+    --color-bg-upper: #FFFFFF;          /* верхний фоновый */
+    --color-dark-text: #353535;         /* темный шрифт/иконки (светлая тема) */
+    --color-light-text: #FFFFFF;        /* светлый шрифт/иконки */
+    --color-secondary-text: #696969;    /* второстепенный шрифт (светлая тема) */
+
+    /* Ховеры для светлой темы */
+    --color-brand-blue-hover: #1B6CD4;       /* ховер для брендового голубого */
+    --color-brand-purple-hover: #9F02D0;     /* ховер для фиолетового */
+    --color-secondary-blue-hover: #C0D2E7;   /* ховер для второстепенного голубого */
+    --color-bg-hover: rgba(44, 136, 247, 0.3); /* ховер-эффект для фоновых элементов */
+
+    /* Цвет бордера в светлой теме */
+    --color-border: #D5E7FD;
+}
+
+body.dark-theme {
+    /* Переопределения для темной темы */
+    --color-secondary-blue: #203041;  /* второстепенный голубой (темная тема) */
+    --color-bg-lower: #202020;        /* нижний фон в темной теме */
+    --color-bg-upper: #121212;        /* верхний фон в темной теме */
+    --color-dark-text: #DCDCDC;       /* темный текст становится светло-серым */
+    --color-secondary-text: #9F9F9F;  /* второстепенный текст в темной теме */
+    --color-border: #353535;          /* бордер в темной теме чуть темнее */
+
+    /* Ховеры в темной теме */
+    --color-brand-blue-hover: #1B6CD4;
+    --color-brand-purple-hover: #9F02D0;
+    --color-secondary-blue-hover: #284C5B;
+}
+
+/*------------------------------
+  2) СБРОС И БАЗОВЫЕ СТИЛИ
+------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-bg-lower);
+    color: var(--color-dark-text);
+    font-family: Arial, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*------------------------------
+  3) ОСНОВНОЙ КОНТЕЙНЕР (container)
+------------------------------*/
+.container {
+    position: relative;
+    z-index: 1;
+    border-radius: 15px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-upper);
+    width: calc(100vw - 74px);
+    height: calc(100vh - 65px);
+    flex-shrink: 0;
+    margin-left: 66px;
+    margin-right: 8px;
+    margin-top: 55px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+.expanded .container {
+    width: calc(100vw - 246px);
+    margin-left: 238px;
+}
+
+/*------------------------------
+  4) БОКОВЫЕ ИКОНКИ (sidebar)
+------------------------------*/
+.icon-container {
+    position: fixed;
+    left: 22px;
+    top: calc(55px + (62px - 22px) / 2 + 22px + 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.icon {
+    position: relative;
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+.icon svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+.icon svg path {
+    fill: var(--color-dark-text);
+    transition: fill 0.3s ease;
+}
+.icon.active svg path {
+    fill: var(--color-brand-blue);
+}
+
+.icon.active::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    border: 2px solid var(--color-brand-blue);
+    background: var(--color-bg-upper);
+    top: 50%;
+    left: -11px;
+    transform: translateY(-50%);
+    z-index: -1;
+    transform-origin: left center;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.icon.active::before {
+    opacity: 1;
+}
+
+.expanded .icon.active::before {
+    width: 200px;
+}
+
+.icon-text {
+    position: absolute;
+    left: 32px;
+    display: block;
+    width: 0;
+    height: 22px;
+    line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    transition: width 0.3s ease, color 0.3s ease;
+}
+
+.expanded .icon-text {
+    width: 148px;
+}
+.icon.active .icon-text {
+    color: var(--color-brand-blue);
+}
+
+.expanded .icon-container {
+    left: 22px;
+    width: 200px;
+    align-items: flex-start;
+}
+.expanded .icon {
+    width: 200px;
+}
+
+/*------------------------------
+  5) ЛОГО
+------------------------------*/
+.logo {
+    position: fixed;
+    left: 22px;
+    top: calc((55px - 32px) / 2);
+    width: 59px;
+    height: 32px;
+    background: url('./images/neurolab-words-logo.png') no-repeat center;
+    background-size: contain;
+}
+
+/*------------------------------
+  6) ГЛАВНОЕ МЕНЮ (nav)
+------------------------------*/
+.main-nav {
+    position: fixed;
+    top: calc((55px - 20px) / 2);
+    left: 140px;
+    display: flex;
+    gap: 32px;
+}
+
+.nav-item {
+    color: var(--color-dark-text);
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    display: flex;
+    height: 20px;
+    flex-direction: column;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+.nav-item:hover {
+    color: var(--color-brand-blue);
+}
+.nav-item.active {
+    color: var(--color-brand-purple);
+    position: relative;
+    transition: color 0.3s ease;
+}
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-brand-purple);
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+/* Ширина пунктов меню (пример) */
+.nav-item:nth-child(1) { width: 123px; }
+.nav-item:nth-child(2) { width: 108px; }
+.nav-item:nth-child(3) { width: 134px; }
+.nav-item:nth-child(4) { width: 127px; }
+
+/* Кнопка меню (бургер) */
+.menu-toggle {
+    position: fixed;
+    left: 22px;
+    top: calc(55px + (62px - 22px) / 2);
+    height: 22px;
+    width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*------------------------------
+  7) СЕКЦИИ (section)
+------------------------------*/
+.section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.section.active {
+    display: block;
+    opacity: 1;
+}
+
+.section h2 {
+    display: flex;
+    width: 165px;
+    height: 20px;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 20px 0 0 30px;
+    color: var(--color-brand-blue);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Широкий заголовок (пример) */
+.section h2.wide {
+    width: auto;
+    min-width: 165px;
+}
+
+.section h3 {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    margin: 30px 0 0 30px;
+}
+
+/*------------------------------
+  8) ПОЛЕ ПОИСКА
+------------------------------*/
+.search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.search-box {
+    position: relative;
+    width: 500px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--color-secondary-blue);
+    display: flex;
+    align-items: center;
+    transition: width 0.3s ease;
+}
+.expanded .search-box {
+    width: 425px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    width: 22px;
+    height: 22px;
+}
+.search-icon path {
+    fill: var(--color-dark-text);
+}
+
+.search-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 16px 0 48px;
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+.search-input::placeholder {
+    color: var(--color-secondary-text);
+}
+
+/*------------------------------
+  9) КАРТОЧКИ (главный экран)
+------------------------------*/
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    padding: 8px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-lower);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    width: 100%;
+}
+.card-text {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-align: right;
+    width: auto;
+    line-height: 1.2;
+    max-width: calc(100% - 27px);
+}
+
+.add-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.cards-line {
+    position: relative;
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    margin-top: 30px;
+}
+
+.content-wrapper {
+    position: relative;
+    margin-top: 10px;
+    padding: 0;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.card-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.card-icon {
+    min-width: 22px;
+    min-height: 22px;
+    flex-shrink: 0;
+}
+
+/* Пример: специальные стили для третьей карточки */
+.cards-container .card:nth-child(3) .card-content {
+    justify-content: flex-end;
+    padding-right: 8px;
+    transform: translateX(-5px);
+    gap: 5px;
+}
+.cards-container .card:nth-child(3) .card-text {
+    text-align: right;
+    margin-right: 0;
+}
+
+/*------------------------------
+  10) ВЕРХНИЕ ПРАВЫЕ КОНТРОЛЫ
+------------------------------*/
+.top-right-controls {
+    position: fixed;
+    top: calc((55px - 30px) / 2);
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    z-index: 9999;
+}
+
+/* Селектор языка */
+.language-selector {
+    position: relative;
+}
+.lang-current {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+.lang-text {
+    color: var(--color-dark-text);
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+.lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-bg-upper);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    min-width: 48px;
+    margin-top: 5px;
+    z-index: 10000;
+}
+.language-selector.active .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.lang-option {
+    color: var(--color-dark-text);
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.lang-option:hover {
+    background-color: var(--color-bg-hover);
+}
+.lang-arrow {
+    width: 7px;
+    height: 11px;
+    flex-shrink: 0;
+    fill: var(--color-dark-text);
+}
+
+/* Настройки, профиль, переключатель темы */
+.settings-button {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.settings-button svg {
+    width: 22px;
+    height: 22px;
+}
+.settings-button path {
+    fill: var(--color-dark-text);
+    transition: fill 0.2s ease;
+}
+.settings-button:hover path {
+    fill: var(--color-brand-blue);
+}
+
+.profile-icon {
+    position: relative;
+    cursor: pointer;
+}
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: var(--color-bg-upper);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    font-family: 'Gilroy', sans-serif;
+}
+.profile-icon:hover .profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E0E0E0;
+}
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.profile-name {
+    color: var(--color-dark-text);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.profile-email {
+    color: var(--color-secondary-text);
+    font-size: 12px;
+    font-weight: 500;
+}
+.profile-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: var(--color-dark-text);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+}
+.profile-menu-item svg {
+    width: 22px;
+    height: 22px;
+}
+.profile-menu-item.logout {
+    color: #FF3B30;
+}
+.profile-menu-item.logout svg {
+    color: #FF3B30;
+}
+.profile-menu-item:hover {
+    background-color: #F5F5F5;
+}
+.profile-menu-divider {
+    height: 1px;
+    background-color: #E0E0E0;
+    margin: 8px 0;
+}
+
+/* Переключатель темы */
+.theme-toggle {
+    cursor: pointer;
+}
+.theme-track {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #D9D9D9;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+.theme-circle {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background: var(--color-bg-upper);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+body.dark-theme .theme-circle {
+    transform: translateX(30px);
+}
+.theme-icon {
+    width: 22px;
+    height: 22px;
+    z-index: 1;
+    position: relative;
+    flex: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-icon.sun path {
+    fill: var(--color-dark-text);
+}
+.theme-icon.moon path {
+    fill: var(--color-dark-text);
+}
+/* Активная иконка темы */
+body:not(.dark-theme) .theme-icon.sun path {
+    fill: var(--color-brand-blue);
+}
+body.dark-theme .theme-icon.moon path {
+    fill: var(--color-brand-blue);
+}
+
+/*------------------------------
+  11) ШАПКА ДОКУМЕНТА / КНОПКИ
+------------------------------*/
+.document-title-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+.document-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-dark-text);
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.header-buttons {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.header-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.header-button:hover {
+    opacity: 0.8;
+}
+.header-button .button-text {
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-dark-text);
+}
+.button-icon {
+    width: 22px;
+    height: 22px;
+    fill: var(--color-dark-text);
+}
+
+/* Прелоад */
+.preload * {
+    transition: none !important;
+}
+
+/*------------------------------
+  12) ЛАБОРАТОРИЯ (TEST)
+------------------------------*/
+.lab-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 0;
+}
+
+.lab-header {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.lab-header h2 {
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+    color: var(--color-brand-blue);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.lab-sidebar {
+    width: 310px;
+    height: calc(100% - 60px);
+    border-right: 1px solid var(--color-border);
+    flex-direction: column;
+    min-height: 0;
+}
+.lab-workspace {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 310px);
+    height: calc(100% - 60px);
+    box-sizing: border-box;
+    padding: 30px 0;
+    overflow-x: hidden;
+}
+
+.workspace-boxes {
+    padding: 0 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.workspace-box-main,
+.workspace-box-secondary {
+    width: 350px;
+    min-width: 315px;
+    border-radius: 15px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-lower);
+    min-height: 0;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Пример распределения (flex) */
+.workspace-box-main {
+    flex: 0 0 60%;
+}
+.workspace-box-secondary {
+    flex: 0 0 calc(40% - 30px);
+}
+
+.workspace-box-secondary textarea {
+    width: 100%;
+    height: calc(100% - 30px);
+    margin-top: 10px;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--color-dark-text);
+}
+.workspace-box-secondary textarea:read-only {
+    cursor: default;
+}
+.workspace-box-secondary textarea::placeholder {
+    color: var(--color-secondary-text);
+    opacity: 1;
+}
+body.dark-theme .workspace-box-secondary textarea::placeholder {
+    color: var(--color-secondary-text);
+    opacity: 1;
+}
+
+.workspace-label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-bottom: 15px;
+}
+
+.workspace-input-wrapper {
+    width: calc(100% - 120px);
+    margin: 0 60px;
+}
+.workspace-input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 835px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.workspace-input {
+    width: 100%;
+    max-width: 715px;
+    padding: 0 15px;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    color: var(--color-dark-text);
+    background: transparent;
+    box-sizing: border-box;
+}
+.workspace-input::-webkit-scrollbar {
+    width: 8px;
+}
+.workspace-input::-webkit-scrollbar-track {
+    background: transparent;
+}
+.workspace-input::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary-blue);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+.workspace-input::-webkit-scrollbar-button:start:decrement,
+.workspace-input::-webkit-scrollbar-button:end:increment {
+    display: none;
+}
+
+/* Сайдбар (параметры) */
+.lab-sidebar h3.lab-sidebar-title {
+    margin: 20px 0 0 30px;
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+.test-builder-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    margin: 20px 0;
+}
+
+.lab-params {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 30px;
+    margin-top: 15px;
+    padding-bottom: 20px;
+}
+
+.param-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 250px;
+}
+.param-group label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+}
+.param-group input,
+.param-group select,
+.param-group textarea {
+    width: 100%;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    padding: 0 12px;
+    border: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: var(--color-dark-text);
+    box-sizing: border-box;
+}
+
+.lang-switch {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 24px;
+}
+.lang-switch input[type="radio"] {
+    display: none;
+}
+.lang-switch label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 24px;
+    cursor: pointer;
+}
+.lang-switch label span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    transition: all 0.2s ease;
+}
+.lang-switch label:hover span {
+    background: var(--color-bg-hover);
+}
+.lang-switch input[type="radio"]:checked + span {
+    background: var(--color-brand-blue);
+    color: var(--color-light-text);
+    font-weight: 500;
+}
+
+.param-group input[type="range"] {
+    height: 24px;
+    padding: 0;
+}
+.param-group textarea {
+    min-height: 80px;
+    padding: 8px 12px;
+}
+
+.lab-sidebar-title {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0 15px 30px;
+}
+
+.lab-params-container {
+    min-height: 0;
+    overflow-y: auto;
+    position: relative;
+}
+.lab-buttons-row {
+    height: 10%;
+    min-height: 60px;
+    padding: 0 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+/* Скроллбар в сайдбаре */
+.lab-params-container::-webkit-scrollbar {
+    width: 4px;
+}
+.lab-params-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.lab-params-container::-webkit-scrollbar-thumb {
+    background: var(--color-secondary-blue);
+    border-radius: 2px;
+}
+.lab-params-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary-blue) transparent;
+}
+
+/* Контейнер уровня сложности (тест) */
+.difficulty-level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.difficulty-title {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    align-self: flex-start;
+}
+.difficulty-slider-container {
+    width: 100%;
+    position: relative;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+.difficulty-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: rgba(53, 53, 53, 0.2);
+    outline: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.difficulty-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.difficulty-slider::-moz-range-thumb {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.difficulty-points {
+    position: absolute;
+    width: calc(100% - 20px);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    left: 10px;
+    right: 10px;
+}
+.difficulty-point {
+    width: 8px;
+    height: 8px;
+    background: var(--color-bg-upper);
+    border: 2px solid var(--color-secondary-blue);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+.difficulty-point.active {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    transform: scale(1.4);
+}
+.difficulty-label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Темная тема (слайдер) */
+body.dark-theme .difficulty-slider {
+    background: rgba(255, 255, 255, 0.1);
+}
+body.dark-theme .difficulty-point {
+    background: var(--color-bg-lower);
+    border-color: var(--color-secondary-blue);
+}
+body.dark-theme .difficulty-point.active {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+}
+body.dark-theme .difficulty-label {
+    color: var(--color-light-text);
+}
+
+/* Выбор класса (тест) */
+.class-switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.class-switch label {
+    position: relative;
+    margin: 0;
+}
+.class-switch input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.class-switch input[type="radio"] + span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 0 14px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.class-switch label:hover span {
+    background: var(--color-bg-hover);
+}
+.class-switch input[type="radio"]:checked + span {
+    background: var(--color-brand-blue);
+    color: var(--color-light-text);
+    font-weight: 500;
+}
+
+/* Пример для длинных значений (10-ЕМН, 11-ОГН) */
+.class-switch label:has(input[value^="10-"]) span,
+.class-switch label:has(input[value^="11-"]) span {
+    min-width: 70px;
+}
+
+.subject-select {
+    width: 100%;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    padding: 0 12px;
+    border: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: var(--color-dark-text);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/* Кнопка "Сгенерировать" (тест) */
+.generate-btn {
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+    background: var(--color-brand-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.generate-btn:hover {
+    background: var(--color-brand-blue-hover);
+}
+.generate-btn span {
+    color: var(--color-light-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-right: 10px;
+}
+.generate-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Чат (TEST) */
+.chat-input-container {
+    position: relative;
+    width: calc(100% - 120px);
+    max-width: 715px;
+    min-height: 50px;
+    margin: 0 60px;
+    padding: 0 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--color-bg-lower);
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: visible;
+    transition: min-height 0.1s ease;
+}
+.chat-input {
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 24px;
+    margin: 13px 0;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-family: 'Gilroy', sans-serif;
+    color: var(--color-dark-text);
+    background: transparent;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    min-height: 24px;
+}
+.chat-input:focus {
+    outline: none;
+}
+.chat-input::placeholder {
+    color: var(--color-secondary-text);
+}
+.send-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+}
+.send-button svg circle {
+    transition: fill 0.2s ease;
+}
+.send-button:hover svg circle {
+    fill: var(--color-brand-blue-hover);
+}
+
+/* Темная тема (общие элементы) */
+body.dark-theme {
+    background: var(--color-bg-lower);
+    color: var(--color-dark-text);
+}
+body.dark-theme .container {
+    background: var(--color-bg-upper);
+    border-color: var(--color-border);
+}
+body.dark-theme .nav-item {
+    color: var(--color-light-text);
+}
+body.dark-theme .nav-item:hover {
+    color: var(--color-brand-blue);
+}
+body.dark-theme .nav-item.active {
+    color: var(--color-brand-purple);
+}
+body.dark-theme .nav-item.active::after {
+    background: var(--color-brand-purple);
+}
+body.dark-theme .theme-track {
+    background: #383838;
+}
+body.dark-theme .icon svg path {
+    fill: var(--color-dark-text);
+}
+body.dark-theme .icon.active svg path {
+    fill: var(--color-brand-blue);
+}
+body.dark-theme .icon-text {
+    color: var(--color-light-text);
+}
+body.dark-theme .search-box {
+    background: var(--color-secondary-blue);
+}
+body.dark-theme .search-icon path {
+    fill: var(--color-dark-text);
+}
+body.dark-theme .search-input {
+    color: var(--color-dark-text);
+}
+body.dark-theme .search-input::placeholder {
+    color: var(--color-secondary-text);
+}
+body.dark-theme .profile-dropdown {
+    background: var(--color-bg-upper);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+body.dark-theme .profile-header {
+    border-bottom-color: var(--color-border);
+}
+body.dark-theme .profile-name {
+    color: var(--color-light-text);
+}
+body.dark-theme .profile-menu-item {
+    color: var(--color-light-text);
+}
+body.dark-theme .profile-menu-item:hover {
+    background-color: var(--color-bg-accent);
+}
+body.dark-theme .profile-menu-divider {
+    background-color: var(--color-border);
+}
+body.dark-theme .lang-dropdown {
+    background: var(--color-bg-upper);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+body.dark-theme .lang-option {
+    color: var(--color-light-text);
+}
+body.dark-theme .lang-option:hover {
+    background-color: var(--color-secondary-blue-hover);
+}
+body.dark-theme .menu-toggle path {
+    fill: var(--color-light-text);
+}
+body.dark-theme .container {
+    background: var(--color-bg-upper);
+}
+body.dark-theme .workspace-label {
+    color: var(--color-light-text);
+}
+body.dark-theme .workspace-input {
+    color: var(--color-light-text);
+}
+body.dark-theme .chat-input-container {
+    background: var(--color-bg-lower);
+}
+body.dark-theme .chat-input::placeholder {
+    color: var(--color-secondary-text);
+}
+
+/* Запретить изменение размера поля custom_settings */
+input[name="custom_settings"],
+textarea[name="custom_settings"] {
+    resize: none;
+    overflow: auto;
+}
+
+/* Стилизация скролла в chat-input */
+.chat-input::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-input::-webkit-scrollbar-track {
+    background: transparent;
+}
+.chat-input::-webkit-scrollbar-thumb {
+    background: rgba(44, 136, 247, 0.3);
+    border-radius: 4px;
+}
+.chat-input::-webkit-scrollbar-thumb:hover {
+    background: rgba(44, 136, 247, 0.5);
+}
+
+/*------------------------------
+  13) ТЕСТ-КОНСТРУКТОР
+------------------------------*/
+.test-constructor {
+    width: 100%;
+}
+.test-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.test-row select {
+    flex: 1;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    padding: 0 8px;
+    border: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: var(--color-dark-text);
+    cursor: pointer;
+}
+.test-row select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.add-test-row {
+    width: 100%;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+.add-test-row:hover {
+    background: var(--color-bg-hover);
+}
+
+.workspace-box-main textarea {
+    width: 100%;
+    height: calc(100% - 30px);
+    margin-top: 10px;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--color-dark-text);
+}
+.workspace-box-main textarea:focus {
+    outline: none;
+}
+
+/* PISA-переключатель */
+.pisa-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.pisa-toggle-container label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-secondary-blue);
+    transition: .3s;
+    border-radius: 12px;
+}
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--color-bg-upper);
+    transition: .3s;
+    border-radius: 50%;
+}
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--color-brand-blue);
+}
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+}
+body.dark-theme .toggle-slider:before {
+    background-color: var(--color-bg-lower);
+}
+
+/*------------------------------
+  14) ПРАВИЛЬНЫЕ ОТВЕТЫ (отображение)
+------------------------------*/
+.answers-display {
+    width: 100%;
+    height: calc(100% - 30px);
+    padding: 10px;
+    overflow-y: auto;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    color: var(--color-dark-text);
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.answer-block {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border);
+}
+.answer-block h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--color-brand-blue);
+}
+.answer-row {
+    margin-bottom: 10px;
+}
+.answer-row strong {
+    margin-right: 5px;
+}
+.answer-block ol {
+    margin: 0 0 0 20px;
+    padding-left: 0;
+}
+.answer-block li {
+    margin-bottom: 4px;
+}
+
+/*======================================================================
+  15) НОВЫЙ БЛОК: КОНСТРУКТОР ЗАДАНИЙ (task), чтобы не конфликтовать
+======================================================================*/
+
+/* Контейнер для заданий */
+.lab-container-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 0;
+    /* По умолчанию может быть display: none; в HTML, если хотим скрывать */
+}
+
+/* Шапка (аналог .lab-header) */
+.lab-header-tasks {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Заголовок "Новое задание" */
+.lab-header-tasks h2 {
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+    color: var(--color-brand-blue);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Wrapper с заголовком документа */
+.document-title-wrapper-tasks {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+.document-title-tasks {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-dark-text);
+    text-align: center;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Кнопки в шапке задания */
+.header-buttons-tasks {
+    position: absolute;
+    right: 45px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.header-button-tasks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.header-button-tasks:hover {
+    opacity: 0.8;
+}
+.header-button-tasks .button-text-tasks {
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-dark-text);
+}
+.button-icon-tasks {
+    width: 22px;
+    height: 22px;
+    fill: var(--color-dark-text);
+}
+
+/* Сайдбар заданий */
+.lab-sidebar-tasks {
+    width: 310px;
+    height: calc(100% - 60px);
+    border-right: 1px solid var(--color-border);
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Контейнер с параметрами (задания) */
+.lab-params-container-tasks {
+    min-height: 0;
+    overflow-y: auto;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Заголовок "Параметры" */
+.lab-sidebar-title-tasks {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 20px 0 15px 30px;
+}
+
+/* Сами параметры (задания) */
+.lab-params-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 30px;
+    margin-top: 15px;
+    padding-bottom: 20px;
+}
+
+/* Скроллбар в сайдбаре заданий */
+.lab-params-container-tasks::-webkit-scrollbar {
+    width: 4px;
+}
+.lab-params-container-tasks::-webkit-scrollbar-track {
+    background: transparent;
+}
+.lab-params-container-tasks::-webkit-scrollbar-thumb {
+    background: var(--color-secondary-blue);
+    border-radius: 2px;
+}
+.lab-params-container-tasks {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary-blue) transparent;
+}
+
+/* Группы полей (задания) */
+.param-group-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 250px;
+}
+.param-group-tasks label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+}
+.param-group-tasks input,
+.param-group-tasks select,
+.param-group-tasks textarea {
+    width: 100%;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    padding: 0 12px;
+    border: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: var(--color-dark-text);
+    box-sizing: border-box;
+}
+
+/* Языковой переключатель (задания) */
+.lang-switch-tasks {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 24px;
+}
+.lang-switch-tasks input[type="radio"] {
+    display: none;
+}
+.lang-switch-tasks label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 24px;
+    cursor: pointer;
+}
+.lang-switch-tasks label span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    transition: all 0.2s ease;
+}
+.lang-switch-tasks label:hover span {
+    background: var(--color-bg-hover);
+}
+.lang-switch-tasks input[type="radio"]:checked + span {
+    background: var(--color-brand-blue);
+    color: var(--color-light-text);
+    font-weight: 500;
+}
+
+/* Выбор класса (задания) */
+.class-switch-tasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.class-switch-tasks label {
+    position: relative;
+    margin: 0;
+}
+.class-switch-tasks input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.class-switch-tasks input[type="radio"] + span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 0 14px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.class-switch-tasks label:hover span {
+    background: var(--color-bg-hover);
+}
+.class-switch-tasks input[type="radio"]:checked + span {
+    background: var(--color-brand-blue);
+    color: var(--color-light-text);
+    font-weight: 500;
+}
+
+/* Кнопка "Сгенерировать" (задания) */
+.lab-buttons-row-tasks {
+    height: 10%;
+    min-height: 60px;
+    padding: 0 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+.generate-btn-task {
+    width: 200px;
+    height: 40px;
+    border-radius: 7px;
+    background: var(--color-brand-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+.generate-btn-task:hover {
+    background: var(--color-brand-blue-hover);
+}
+.generate-btn-task span {
+    color: var(--color-light-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-right: 10px;
+}
+.generate-btn-task svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Рабочая зона (задания) */
+.lab-workspace-tasks {
+    position: relative;
+    display: flex;                 /* чтобы блоки могли располагаться слева/справа */
+    justify-content: space-between;
+    width: calc(100% - 310px);     /* учитываем сайдбар шириной 310px */
+    height: calc(100% - 60px);     /* учитываем шапку высотой 60px */
+    box-sizing: border-box;
+    padding: 30px 0;
+    overflow-x: hidden;
+}
+.workspace-input-container-tasks {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 835px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.workspace-input-tasks {
+    width: 100%;
+    max-width: 715px;
+    padding: 0 15px;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    color: var(--color-dark-text);
+    background: transparent;
+    box-sizing: border-box;
+}
+.workspace-input-tasks::-webkit-scrollbar {
+    width: 8px;
+}
+.workspace-input-tasks::-webkit-scrollbar-track {
+    background: transparent;
+}
+.workspace-input-tasks::-webkit-scrollbar-thumb {
+    background-color: var(--color-secondary-blue);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+/* Блок-контейнер для больших боксов (аналог .workspace-boxes) */
+.workspace-boxes-tasks {
+    padding: 0 30px;               /* отступы слева/справа */
+    height: 100%;
+    display: flex;
+    flex-direction: column;        /* по аналогии с тестом: колонки сверху вниз */
+    box-sizing: border-box;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Два основных бокса внутри workspace-boxes-tasks (аналог .workspace-box-main, .workspace-box-secondary) */
+.workspace-box-main-tasks,
+.workspace-box-secondary-tasks {
+    width: 350px;
+    min-width: 315px;
+    border-radius: 15px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-lower);
+    min-height: 0;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.workspace-box-main-tasks {
+    flex: 0 0 60%;
+}
+.workspace-box-secondary-tasks {
+    flex: 0 0 calc(40% - 30px);
+}
+
+.workspace-box-secondary-tasks textarea {
+    width: 100%;
+    height: calc(100% - 30px);
+    margin-top: 10px;
+    resize: none;
+    border: none;
+    background: transparent;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--color-dark-text);
+}
+.workspace-box-secondary-tasks textarea:read-only {
+    cursor: default;
+}
+.workspace-box-secondary-tasks textarea::placeholder {
+    color: var(--color-secondary-text);
+    opacity: 1;
+}
+body.dark-theme .workspace-box-secondary-tasks textarea::placeholder {
+    color: var(--color-secondary-text);
+    opacity: 1;
+}
+
+.workspace-label-tasks {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    margin-bottom: 15px;
+}
+
+/* Чат (задания) */
+.chat-input-container-tasks {
+    position: relative;
+    width: calc(100% - 120px);
+    max-width: 715px;
+    min-height: 50px;
+    margin: 0 60px;
+    padding: 0 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--color-bg-lower);
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: visible;
+    transition: min-height 0.1s ease;
+}
+.chat-input-tasks {
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 24px;
+    margin: 13px 0;
+    border: none;
+    resize: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    font-size: 14px;
+    font-family: 'Gilroy', sans-serif;
+    color: var(--color-dark-text);
+    background: transparent;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    min-height: 24px;
+}
+.chat-input-tasks:focus {
+    outline: none;
+}
+.chat-input-tasks::placeholder {
+    color: var(--color-secondary-text);
+}
+.send-button-tasks {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+}
+.send-button-tasks svg circle {
+    transition: fill 0.2s ease;
+}
+.send-button-tasks:hover svg circle {
+    fill: var(--color-brand-blue-hover);
+}
+
+/* Скроллбар для chat-input-tasks */
+.chat-input-tasks::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-input-tasks::-webkit-scrollbar-track {
+    background: transparent;
+}
+.chat-input-tasks::-webkit-scrollbar-thumb {
+    background: rgba(44, 136, 247, 0.3);
+    border-radius: 4px;
+}
+.chat-input-tasks::-webkit-scrollbar-thumb:hover {
+    background: rgba(44, 136, 247, 0.5);
+}
+
+/* Слайдер сложности (задания) */
+.difficulty-title-tasks {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    align-self: flex-start;
+}
+.difficulty-level-tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.difficulty-slider-container-tasks {
+    width: 100%;
+    position: relative;
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+.difficulty-slider-tasks {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: rgba(53, 53, 53, 0.2);
+    outline: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.difficulty-slider-tasks::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.difficulty-slider-tasks::-moz-range-thumb {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.difficulty-points-tasks {
+    position: absolute;
+    width: calc(100% - 20px);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    left: 10px;
+    right: 10px;
+}
+.difficulty-point-tasks {
+    width: 8px;
+    height: 8px;
+    background: var(--color-bg-upper);
+    border: 2px solid var(--color-secondary-blue);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+.difficulty-point-tasks.active {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+    transform: scale(1.4);
+}
+.difficulty-label-tasks {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Темная тема (задания) */
+body.dark-theme .lab-container-tasks {
+    background: var(--color-bg-upper);
+}
+body.dark-theme .lab-header-tasks {
+    border-bottom-color: var(--color-border);
+}
+body.dark-theme .document-title-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .header-button-tasks .button-text-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .button-icon-tasks {
+    fill: var(--color-light-text);
+}
+body.dark-theme .lab-sidebar-tasks {
+    border-right-color: var(--color-border);
+}
+body.dark-theme .lab-params-container-tasks {
+    scrollbar-color: var(--color-secondary-blue) transparent;
+}
+body.dark-theme .lab-sidebar-title-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .param-group-tasks label {
+    color: var(--color-light-text);
+}
+body.dark-theme .param-group-tasks input,
+body.dark-theme .param-group-tasks select,
+body.dark-theme .param-group-tasks textarea {
+    background: var(--color-secondary-blue);
+    color: var(--color-dark-text);
+}
+body.dark-theme .lang-switch-tasks label span {
+    color: var(--color-dark-text);
+}
+body.dark-theme .lang-switch-tasks input[type="radio"]:checked + span {
+    background: var(--color-brand-blue);
+    color: var(--color-light-text);
+}
+body.dark-theme .generate-btn-task {
+    background: var(--color-brand-blue);
+}
+body.dark-theme .generate-btn-task:hover {
+    background: var(--color-brand-blue-hover);
+}
+body.dark-theme .lab-workspace-tasks {
+    background: var(--color-bg-upper);
+}
+body.dark-theme .workspace-input-container-tasks {
+    background: transparent;
+}
+body.dark-theme .workspace-input-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .chat-input-container-tasks {
+    background: var(--color-bg-lower);
+}
+body.dark-theme .chat-input-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .chat-input-tasks::placeholder {
+    color: var(--color-secondary-text);
+}
+body.dark-theme .workspace-box-main-tasks,
+body.dark-theme .workspace-box-secondary-tasks {
+    border-color: var(--color-border);
+    background: var(--color-bg-lower);
+}
+body.dark-theme .workspace-label-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .answers-display-tasks {
+    color: var(--color-light-text);
+}
+body.dark-theme .difficulty-slider-tasks {
+    background: rgba(255, 255, 255, 0.1);
+}
+body.dark-theme .difficulty-point-tasks {
+    background: var(--color-bg-lower);
+    border-color: var(--color-secondary-blue);
+}
+body.dark-theme .difficulty-point-tasks.active {
+    background: var(--color-brand-blue);
+    border-color: var(--color-brand-blue);
+}
+body.dark-theme .difficulty-label-tasks {
+    color: var(--color-light-text);
+}
+
+/* Конструктор задания */
+.task-constructor {
+    width: 100%;
+}
+.task-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.task-row select {
+    flex: 1;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    padding: 0 8px;
+    border: none;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    color: var(--color-dark-text);
+    cursor: pointer;
+}
+.task-row select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.add-task-row {
+    width: 100%;
+    height: 24px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+.add-task-row:hover {
+    background: var(--color-bg-hover);
+}
+
+/* Отображение «правильных ответов» (заданий) */
+.answers-display-tasks {
+    width: 100%;
+    height: calc(100% - 30px);
+    padding: 10px;
+    overflow-y: auto;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    color: var(--color-dark-text);
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* Кнопка редактирования конструктора */
+.edit-constructor-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 32px;
+    border-radius: 7px;
+    background: var(--color-secondary-blue);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.edit-constructor-btn:hover {
+    background: var(--color-bg-hover);
+}
+
+.edit-constructor-btn span {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Popup окно */
+.constructor-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.constructor-popup.active {
+    display: flex;
+}
+
+.constructor-popup-content {
+    background: var(--color-bg-upper);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.constructor-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.constructor-popup-header h3 {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.close-popup-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.constructor-popup-body {
+    max-height: calc(90vh - 100px);
+    overflow-y: auto;
+}
+
+/* Адаптация существующих стилей для popup */
+.constructor-popup .task-row {
+    margin-bottom: 15px;
+}
+
+.constructor-popup .task-row select {
+    min-width: 120px;
+}
+
+/* Темная тема */
+body.dark-theme .edit-constructor-btn {
+    background: var(--color-secondary-blue);
+}
+
+body.dark-theme .edit-constructor-btn span {
+    color: var(--color-light-text);
+}
+
+body.dark-theme .constructor-popup-content {
+    background: var(--color-bg-upper);
+}
+
+body.dark-theme .constructor-popup-header h3 {
+    color: var(--color-light-text);
+}
+
+body.dark-theme .close-popup-btn svg path {
+    fill: var(--color-light-text);
+}
+
+/* PIRLS-переключатель для заданий */
+.sor-toggle-container-tasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sor-toggle-container-tasks label {
+    color: var(--color-dark-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+}
+
+/* Темная тема для SOR/SOCH тумблера */
+body.dark-theme .sor-toggle-container-tasks label {
+    color: var(--color-light-text);
+}
+
+/* Футер popup окна */
+.constructor-popup-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.constructor-confirm-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 36px;
+    background: var(--color-brand-blue);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.constructor-confirm-btn:hover {
+    background: var(--color-brand-blue-hover);
+}
+
+.constructor-confirm-btn span {
+    color: var(--color-light-text);
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+.constructor-confirm-btn svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-light-text);
+}
+
+/* Темная тема */
+body.dark-theme .constructor-popup-footer {
+    border-color: var(--color-border);
+}
+
+/************************************************************
+  Конец файла style.css (полностью объединённый код)
+************************************************************/

@@ -1,0 +1,486 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="logo"></div>
+    <div class="menu-toggle" data-section="section-menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M16.5 19.25H5.5C3.94167 19.25 2.75 18.0583 2.75 16.5V5.5C2.75 3.94167 3.94167 2.75 5.5 2.75H16.5C18.0583 2.75 19.25 3.94167 19.25 5.5V16.5C19.25 18.0583 18.0583 19.25 16.5 19.25ZM5.5 4.58333C4.95 4.58333 4.58333 4.95 4.58333 5.5V16.5C4.58333 17.05 4.95 17.4167 5.5 17.4167H16.5C17.05 17.4167 17.4167 17.05 17.4167 16.5V5.5C17.4167 4.95 17.05 4.58333 16.5 4.58333H5.5Z" fill="#353535"/>
+          <path d="M8.24998 19.25C7.69998 19.25 7.33331 18.8833 7.33331 18.3333V3.66667C7.33331 3.11667 7.69998 2.75 8.24998 2.75C8.79998 2.75 9.16665 3.11667 9.16665 3.66667V18.3333C9.16665 18.8833 8.79998 19.25 8.24998 19.25Z" fill="#353535"/>
+      </svg>
+    </div>
+    <nav class="main-nav">
+      <a href="/playground" class="nav-item active" data-section="section-home">Рабочая зона</a>
+      <a class="nav-item">Инструкции</a>
+      <a class="nav-item">Тарифный план</a>
+      <a class="nav-item">Документация</a>
+    </nav>
+    <div class="top-right-controls">
+        <div class="language-selector">
+            <div class="lang-current">
+                <span class="lang-text">RU</span>
+                <svg class="lang-arrow" xmlns="http://www.w3.org/2000/svg" width="7" height="11" viewBox="0 0 7 11" fill="none">
+                    <rect x="3.53033" width="5" height="1" rx="0.5" transform="rotate(46 3.53033 0)"/>
+                    <path d="M0.386525 3.94499C0.187885 3.75316 0.18236 3.43663 0.374185 3.23799L3.15282 0.360627C3.34464 0.161987 3.66118 0.156462 3.85982 0.348286V0.348286C4.05846 0.540111 4.06398 0.856645 3.87216 1.05529L1.09352 3.93264C0.9017 4.13128 0.585166 4.13681 0.386525 3.94499V3.94499Z"/>
+                    <rect x="3.47333" y="10.1113" width="5" height="1" rx="0.5" transform="rotate(-134 3.47333 10.1113)"/>
+                    <path d="M6.61714 6.16634C6.81578 6.35817 6.8213 6.6747 6.62948 6.87334L3.85084 9.7507C3.65902 9.94934 3.34248 9.95487 3.14384 9.76304V9.76304C2.9452 9.57122 2.93968 9.25468 3.1315 9.05604L5.91014 6.17868C6.10196 5.98004 6.4185 5.97452 6.61714 6.16634V6.16634Z"/>
+                </svg>
+            </div>
+            <div class="lang-dropdown">
+                <div class="lang-option" data-lang="ru">RU</div>
+                <div class="lang-option" data-lang="kz">KZ</div>
+                <div class="lang-option" data-lang="en">EN</div>
+            </div>
+        </div>
+        <div class="settings-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 20.1663C9.89998 20.1663 8.98331 19.5247 8.52498 18.5163C8.43331 18.333 8.24998 18.1497 8.06665 18.058C7.88331 17.9663 7.60831 17.9663 7.42498 18.058C6.41665 18.5163 5.22498 18.333 4.49165 17.508C3.66665 16.7747 3.48331 15.583 3.94165 14.5747C4.03331 14.3913 4.03331 14.1163 3.94165 13.933C3.84998 13.7497 3.66665 13.5663 3.48331 13.4747C2.47498 13.0163 1.83331 12.0997 1.83331 10.9997C1.83331 9.89967 2.47498 8.98301 3.48331 8.52467C3.66665 8.43301 3.84998 8.34134 3.94165 8.06634C4.03331 7.88301 4.03331 7.60801 3.94165 7.42467C3.48331 6.41634 3.66665 5.22467 4.49165 4.49134C5.22498 3.66634 6.41665 3.48301 7.42498 3.94134C7.60831 4.03301 7.88331 4.03301 8.06665 3.94134C8.34165 3.84967 8.43331 3.66634 8.52498 3.48301C8.98331 2.47467 9.89998 1.83301 11 1.83301C12.1 1.83301 13.0166 2.47467 13.475 3.48301C13.5666 3.66634 13.75 3.84967 13.9333 3.94134C14.1166 4.03301 14.3916 4.03301 14.575 3.94134C15.5833 3.48301 16.775 3.66634 17.5083 4.49134C18.3333 5.22467 18.5166 6.41634 18.0583 7.42467C17.9666 7.60801 17.9666 7.88301 18.0583 8.06634C18.15 8.24967 18.3333 8.43301 18.5166 8.52467C19.525 8.98301 20.1666 9.89967 20.1666 10.9997C20.1666 12.0997 19.525 13.0163 18.5166 13.4747C18.3333 13.5663 18.15 13.7497 18.0583 13.933C17.9666 14.1163 17.9666 14.3913 18.0583 14.5747C18.5166 15.583 18.3333 16.7747 17.5083 17.5997C16.6833 18.4247 15.4916 18.608 14.4833 18.1497C14.3 18.058 14.025 18.058 13.8416 18.1497C13.6583 18.2413 13.475 18.4247 13.3833 18.608C13.0166 19.5247 12.1 20.1663 11 20.1663ZM7.79165 16.133C8.15831 16.133 8.43331 16.2247 8.79998 16.3163C9.44165 16.5913 9.99165 17.0497 10.2666 17.783C10.45 18.2413 10.9083 18.2413 11 18.2413C11.0916 18.2413 11.55 18.2413 11.7333 17.783C12.0083 17.1413 12.5583 16.5913 13.2 16.3163C13.8416 16.0413 14.575 16.0413 15.3083 16.408C15.7666 16.683 16.1333 16.3163 16.225 16.2247C16.3166 16.133 16.5916 15.7663 16.4083 15.308C16.1333 14.6663 16.0416 13.933 16.3166 13.1997C16.5916 12.558 17.05 12.008 17.7833 11.733C18.2416 11.5497 18.2416 11.0913 18.2416 10.9997C18.2416 10.908 18.2416 10.4497 17.7833 10.2663C17.1416 9.99134 16.5916 9.44134 16.3166 8.79967C16.0416 8.15801 16.0416 7.42467 16.4083 6.69134C16.5916 6.23301 16.3166 5.86634 16.225 5.77467C16.1333 5.68301 15.7666 5.40801 15.3083 5.59134C14.6666 5.86634 13.9333 5.95801 13.2 5.68301C12.5583 5.40801 12.0083 4.94967 11.7333 4.21634C11.55 3.75801 11.0916 3.66634 11 3.66634C10.9083 3.66634 10.45 3.66634 10.2666 4.12467C9.99165 4.76634 9.44165 5.31634 8.79998 5.59134C8.06665 5.86634 7.33331 5.86634 6.69165 5.59134C6.23331 5.40801 5.86665 5.68301 5.77498 5.77467C5.68331 5.86634 5.40831 6.23301 5.59165 6.69134C5.86665 7.33301 5.86665 8.06634 5.68331 8.79967C5.40831 9.44134 4.94998 9.99134 4.21665 10.2663C3.75831 10.4497 3.66665 10.908 3.66665 10.9997C3.66665 11.0913 3.66665 11.5497 4.12498 11.733C4.76665 12.008 5.31665 12.558 5.59165 13.1997C5.86665 13.8413 5.86665 14.5747 5.49998 15.308C5.31665 15.7663 5.59165 16.133 5.68331 16.2247C5.77498 16.3163 6.14165 16.5913 6.59998 16.408C7.05831 16.2247 7.42498 16.133 7.79165 16.133Z" fill="#353535"/>
+                <path d="M11 14.6663C8.98331 14.6663 7.33331 13.0163 7.33331 10.9997C7.33331 8.98301 8.98331 7.33301 11 7.33301C13.0166 7.33301 14.6666 8.98301 14.6666 10.9997C14.6666 13.0163 13.0166 14.6663 11 14.6663ZM11 9.16634C9.99165 9.16634 9.16665 9.99134 9.16665 10.9997C9.16665 12.008 9.99165 12.833 11 12.833C12.0083 12.833 12.8333 12.008 12.8333 10.9997C12.8333 9.99134 12.0083 9.16634 11 9.16634Z" fill="#353535"/>
+            </svg>
+        </div>
+        <div class="theme-toggle">
+            <div class="theme-track">
+                <svg class="theme-icon sun" fill="none" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="m12 6c-.5523 0-1-.44772-1-1v-2c0-.55228.4477-1 1-1s1 .44772 1 1v2c0 .55228-.4477 1-1 1zm0 16c-.5523 0-1-.4477-1-1v-2c0-.5523.4477-1 1-1s1 .4477 1 1v2c0 .5523-.4477 1-1 1zm-7-9c.55228 0 1-.4477 1-1s-.44772-1-1-1h-2c-.55228 0-1 .4477-1 1s.44772 1 1 1zm17-1c0 .5523-.4477 1-1 1h-2c-.5523 0-1-.4477-1-1s.4477-1 1-1h2c.5523 0 1 .4477 1 1zm-5.7579-5.65687c-.3905.39052-.3905 1.02368 0 1.41421.3905.39052 1.0237.39052 1.4142 0l1.4142-1.41422c.3906-.39052.3906-1.02368 0-1.41421-.3905-.39052-1.0236-.39052-1.4142 0zm-11.31249 12.72797c-.39052-.3906-.39052-1.0237 0-1.4143l1.41422-1.4142c.39052-.3905 1.02368-.3905 1.41421 0 .39052.3906.39052 1.0237 0 1.4142l-1.41421 1.4143c-.39053.3905-1.02369.3905-1.41422 0zm12.72669-2.8283c-.3905-.3905-1.0237-.3905-1.4142 0s-.3905 1.0237 0 1.4142l1.4142 1.4142c.3906.3905 1.0237.3905 1.4142 0 .3906-.3905.3906-1.0237 0-1.4142zm-12.72669-11.31374c.39053-.39052 1.02369-.39052 1.41422 0l1.41421 1.41422c.39052.39052.39052 1.02369 0 1.41421s-1.02369.39052-1.41421 0l-1.41422-1.41421c-.39052-.39053-.39052-1.02369 0-1.41422zm3.07039 7.07094c0 2.2091 1.79086 4 4 4 2.2091 0 4-1.7909 4-4 0-2.20914-1.7909-4-4-4-2.20914 0-4 1.79086-4 4zm2 0c0-1.1046.8954-2 2-2s2 .8954 2 2-.8954 2-2 2-2-.8954-2-2-2z" fill="currentColor" fill-rule="evenodd"/>
+                </svg>
+                <div class="theme-circle"></div>
+                <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                    <path d="M11 20.1663C9.625 20.1663 8.34166 19.8913 7.05833 19.2497C5.59166 18.5163 4.30833 17.4163 3.39166 16.0413C2.475 14.6663 1.925 13.0163 1.83333 11.3663C1.74166 9.71634 2.10833 8.06634 2.93333 6.59967C3.75833 5.13301 4.85833 3.94134 6.325 3.02467C7.7 2.29134 9.35 1.83301 11 1.83301H11.0917H11.3667C11.7333 1.83301 12.1 2.10801 12.1917 2.38301C12.2833 2.65801 12.2833 3.11634 11.9167 3.39134C10.9083 4.30801 10.2667 5.59134 10.0833 6.96634C9.9 8.34134 10.175 9.71634 11 10.908C11.7333 12.0997 12.925 12.9247 14.2083 13.383C15.4917 13.8413 16.9583 13.7497 18.2417 13.1997C18.6083 13.0163 18.975 13.108 19.25 13.383C19.525 13.658 19.6167 14.0247 19.4333 14.3913C18.7917 16.0413 17.7833 17.4163 16.5 18.333C15.125 19.3413 13.5667 19.8913 11.9167 20.0747C11.6417 20.1663 11.275 20.1663 11 20.1663ZM9.35 3.84967C8.61666 4.03301 7.88333 4.30801 7.24166 4.67467C6.05 5.40801 5.13333 6.32467 4.49166 7.51634C3.85 8.70801 3.575 9.99134 3.66666 11.3663C3.75833 12.6497 4.125 13.933 4.85833 15.1247C5.59166 16.2247 6.6 17.1413 7.79166 17.6913C8.98333 18.2413 10.3583 18.5163 11.6417 18.333C12.925 18.2413 14.2083 17.6913 15.3083 16.958C15.8583 16.5913 16.3167 16.133 16.6833 15.583C15.675 15.6747 14.575 15.583 13.5667 15.2163C11.825 14.6663 10.3583 13.4747 9.35 12.008C8.34166 10.4497 7.975 8.61634 8.15833 6.87467C8.43333 5.77467 8.8 4.76634 9.35 3.84967Z" fill="#353535"/>
+                </svg>
+            </div>
+        </div>
+        <div class="profile-icon">
+            <svg height="30" viewBox="0 0 64 64" width="30" xmlns="http://www.w3.org/2000/svg">
+                <g><circle cx="32" cy="32" fill="#e6ecff" r="31"></circle>
+                <g fill="#4294ff">
+                    <path d="m56.877 50.4748a31.0647 31.0647 0 0 0 -49.7651-.0156 30.9669 30.9669 0 0 0 49.7651.0156z"></path>
+                    <circle cx="32" cy="22" r="12"></circle>
+                </g></g>
+            </svg>
+            <div class="profile-dropdown">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <div class="profile-name" id="profileName"></div>
+                        <div class="profile-email" id="profileEmail"></div>
+                    </div>
+                </div>
+                <div class="profile-menu">
+                    <a href="#" class="profile-menu-item">
+                        <span>Личный кабинет</span>
+                    </a>
+                    <a href="#" class="profile-menu-item">
+                        <span>Тарифный план</span>
+                    </a>
+                    <a href="#" class="profile-menu-item">
+                        <span>Условия и политика</span>
+                    </a>
+                    <div class="profile-menu-divider"></div>
+                    <a href="#" class="profile-menu-item logout">
+                        <svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="m5 4c0-1.10457.89543-2 2-2h10c1.1046 0 2 .89543 2 2v16c0 1.1046-.8954 2-2 2h-10c-1.10457 0-2-.8954-2-2v-.5165-4.3835-10.37682zm12 16h-6.1281l1.9159-.8211c.7354-.3152 1.2122-1.0382 1.2122-1.8383v-9.76028c0-.71771-.3846-1.3804-1.0077-1.73648l-3.22674-1.84384h7.23444zm-10-4.9v-10.37682l5 2.85714v9.76028l-5 2.1429zm3-4.1c-.55228 0-1 .4477-1 1s.44772 1 1 1c.5523 0 1-.4477 1-1s-.4477-1-1-1z" fill="currentColor" fill-rule="evenodd"/>
+                        </svg>
+                        <span>Выйти</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="container">
+             <section id="section-home" class="section active">
+                <h2 data-translate="main_menu">Главное меню</h2>
+                <div class="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                            <path clip-rule="evenodd" d="m2 9.5c0 4.1421 3.35786 7.5 7.5 7.5 1.7316 0 3.3262-.5869 4.5957-1.5725.0478.1011.1135.1959.1972.2796l6 6c.3905.3905 1.0237.3905 1.4142 0s.3905-1.0237 0-1.4142l-6-6c-.0837-.0837-.1785-.1494-.2796-.1972.9856-1.2695 1.5725-2.8641 1.5725-4.5957 0-4.14214-3.3579-7.5-7.5-7.5-4.14214 0-7.5 3.35786-7.5 7.5zm2 0c0-3.03757 2.46243-5.5 5.5-5.5 3.0376 0 5.5 2.46243 5.5 5.5 0 3.0376-2.4624 5.5-5.5 5.5-3.03757 0-5.5-2.4624-5.5-5.5z" fill="#353535"/>
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Поиск" data-translate="search">
+                    </div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="card-group">
+                        <div class="cards-container">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-text" data-translate="test">Тест</span>
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                        <g><path d="m5 8c-.3 0-.5-.1-.7-.3l-1.5-1.5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l.8.8 1.8-1.8c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-2.5 2.5c-.2.2-.4.3-.7.3z"/></g><g><path d="m5 14c-.3 0-.5-.1-.7-.3l-1.5-1.5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l.8.8 1.8-1.8c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-2.5 2.5c-.2.2-.4.3-.7.3z"/></g><g><path d="m5 20c-.3 0-.5-.1-.7-.3l-1.5-1.5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l.8.8 1.8-1.8c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-2.5 2.5c-.2.2-.4.3-.7.3z"/></g><g><path d="m20 7h-9c-.6 0-1-.4-1-1s.4-1 1-1h9c.6 0 1 .4 1 1s-.4 1-1 1z"/></g><g><path d="m20 13h-9c-.6 0-1-.4-1-1s.4-1 1-1h9c.6 0 1 .4 1 1s-.4 1-1 1z"/></g><g><path d="m20 19h-9c-.6 0-1-.4-1-1s.4-1 1-1h9c.6 0 1 .4 1 1s-.4 1-1 1z"/></g>
+                                    </svg>
+                                </div>
+                                <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                    <path d="m18 13h-12c-.6 0-1-.4-1-1s.4-1 1-1h12c.6 0 1 .4 1 1s-.4 1-1 1z" fill="#2C88F7"/>
+                                    <path d="m12 19c-.6 0-1-.4-1-1v-12c0-.6.4-1 1-1s1 .4 1 1v12c0 .6-.4 1-1 1z" fill="#2C88F7"/>
+                                </svg>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-text" data-translate="task">Задание</span>
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                        <g><path d="m5.7 22h-1.7c-1.1 0-2-.9-2-2v-1.7c0-.8.3-1.6.9-2.1l13-13c2.1-1.8 4.2-1.3 5.3-.1s1.3 3.3-.3 5l-13 13c-.6.6-1.4.9-2.2.9zm13-18c-.4 0-.9.2-1.5.6l-12.9 13c-.2.2-.3.4-.3.7v1.7h1.7c.3 0 .5-.1.7-.3l13-13c.9-.9.8-1.8.3-2.3-.3-.2-.6-.4-1-.4z"/></g><g><path d="m18.7 9.7c-.3 0-.5-.1-.7-.3l-3.4-3.4c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l3.4 3.4c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z"/></g>
+                                    </svg>
+                                </div>
+                                <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                    <path d="m18 13h-12c-.6 0-1-.4-1-1s.4-1 1-1h12c.6 0 1 .4 1 1s-.4 1-1 1z" fill="#2C88F7"/>
+                                    <path d="m12 19c-.6 0-1-.4-1-1v-12c0-.6.4-1 1-1s1 .4 1 1v12c0 .6-.4 1-1 1z" fill="#2C88F7"/>
+                                </svg>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-text" data-translate="homework">Домашняя работа</span>
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 25">
+                                        <path d="m21.95 6.55005c-.05-.11-1.33-2.58008-5.43-2.58008-2.28 0-3.67.78999-4.46 1.48999-.81-.71-2.23001-1.5-4.57001-1.5-4.02 0-5.29 2.48009-5.34 2.59009l-.1.20996v11.20999c0 .58.28 1.1201.75 1.4601.46.33 1.06002.4099 1.59002.2199.73-.26 1.87-.57 3.12-.57 1.91 0 3.51999.6501 3.96999.8501.15.07.31.0999.46.0999.04 0 .07-.01.11-.02.04 0 .09.02.13.02.15 0 .31-.0299.46-.0999.44-.2 2.02-.8401 3.92-.8401 1.28 0 2.42.3 3.16.56.53.18 1.12.1 1.58-.23.47-.33.75-.88.75-1.45v-11.22l-.11-.20996zm-10.88 11.08995c-.91-.29-2.15001-.56-3.55001-.56s-2.58999.29-3.45999.57v-10.35996c.3-.39 1.25-1.32007 3.44-1.32007 2.3 0 3.28.95008 3.57 1.33008zm8.99.02c-.88-.28-2.11-.56-3.49-.56s-2.6.27-3.49.55v-10.34995c.29-.39 1.23-1.32007 3.45-1.32007s3.24.94007 3.53 1.32007v10.36995z"/>
+                                    </svg>
+                                </div>
+                                <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                    <path d="m18 13h-12c-.6 0-1-.4-1-1s.4-1 1-1h12c.6 0 1 .4 1 1s-.4 1-1 1z" fill="#2C88F7"/>
+                                    <path d="m12 19c-.6 0-1-.4-1-1v-12c0-.6.4-1 1-1s1 .4 1 1v12c0 .6-.4 1-1 1z" fill="#2C88F7"/>
+                                </svg>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-text" data-translate="manual">Методичка</span>
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                        <g><path d="m17 22h-10c-.8 0-1.6-.3-2.1-.9-.6-.5-.9-1.3-.9-2.1v-12c0-.8.3-1.6.9-2.1.5-.6 1.3-.9 2.1-.9h2c.6 0 1 .4 1 1s-.4 1-1 1h-2c-.3 0-.5.1-.7.3s-.3.4-.3.7v12c0 .3.1.5.3.7s.4.3.7.3h10c.3 0 .5-.1.7-.3s.3-.4.3-.7v-12c0-.3-.1-.5-.3-.7s-.4-.3-.7-.3h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.8 0 1.6.3 2.1.9.6.5.9 1.3.9 2.1v12c0 .8-.3 1.6-.9 2.1s-1.3.9-2.1.9z"/></g><g><path d="m13 8h-2c-1.7 0-3-1.3-3-3s1.3-3 3-3h2c1.7 0 3 1.3 3 3s-1.3 3-3 3zm-2-4c-.6 0-1 .4-1 1s.4 1 1 1h2c.6 0 1-.4 1-1s-.4-1-1-1z"/></g><g><path d="m9 13c-.6 0-1-.4-1-1s.4-1 1-1c.6 0 1 .4 1 1s-.4 1-1 1z"/></g><g><path d="m15 13h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1z"/></g><g><path d="m9 17c-.6 0-1-.4-1-1s.4-1 1-1c.6 0 1 .4 1 1s-.4 1-1 1z"/></g><g><path d="m15 17h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1s-.4 1-1 1z"/></g>
+                                    </svg>
+                                </div>
+                                <svg class="add-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                    <path d="m18 13h-12c-.6 0-1-.4-1-1s.4-1 1-1h12c.6 0 1 .4 1 1s-.4 1-1 1z" fill="#2C88F7"/>
+                                    <path d="m12 19c-.6 0-1-.4-1-1v-12c0-.6.4-1 1-1s1 .4 1 1v12c0 .6-.4 1-1 1z" fill="#2C88F7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cards-line"></div>
+                    <h3 data-translate="recent_documents">Последние документы</h3>
+                </div>
+              </section>
+              
+              <section id="section-lab" class="section">
+                <div class="lab-container">
+                    <!-- Шапка -->
+                    <div class="lab-header">
+                        <div class="lab-header-icon">
+                            <!-- Иконка будет добавляться динамически -->
+                        </div>
+                        <div class="document-title-wrapper">
+                            <div class="document-title" contenteditable="true" data-max-length="50">Новый тест</div>
+                            <div class="header-buttons">
+                                <div class="header-button">
+                                    <span class="button-text">Создать Гугл Форму</span>
+                                    <svg class="button-icon" id="Capa_1" enable-background="new 0 0 512 512" height="22" viewBox="0 0 512 512" width="22" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- SVG код Google Forms (оставлен без изменений) -->
+                                        <g><g id="Forms_4_"><g><g><g><g><g><path d="m451 135-105-30-30-105h-210c-24.853 0-45 20.147-45 45v422c0 24.853 20.147 45 45 45h300c24.853 0 45-20.147 45-45z" fill="#734bbd"/></g></g></g></g></g><g><circle cx="136" cy="256" fill="#fff5f5" r="15"/></g><g><circle cx="136" cy="316" fill="#fff5f5" r="15"/></g><g><circle cx="136" cy="376" fill="#fff5f5" r="15"/></g></g><g id="Forms_1_"><g><g><path d="m451 135v332c0 24.853-20.147 45-45 45h-150v-512h60l30 105z" fill="#5f45a9"/></g></g></g><g><g><path d="m346 271h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g></g><g><path d="m346 331h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g><g><path d="m346 391h-150c-8.291 0-15-6.709-15-15s6.709-15 15-15h150c8.291 0 15 6.709 15 15s-6.709 15-15 15z" fill="#fff5f5"/></g><g fill="#e3e7ea"><path d="m256 391h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/><path d="m256 331h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/><path d="m256 271h90c8.291 0 15-6.709 15-15s-6.709-15-15-15h-90z"/></g><path d="m451 135h-105c-16.5 0-30-13.5-30-30v-105c3.9 0 7.8 1.5 10.499 4.501l120 120c3.001 2.699 4.501 6.599 4.501 10.499z" fill="#9b7ed0"/></g></svg>
+                                </div>
+                                <div class="header-button">
+                                    <span class="button-text">Экспорт</span>
+                                    <svg class="button-icon" enable-background="new 0 0 24 24" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m8.7 7.7 2.3-2.3v9.6c0 .6.4 1 1 1s1-.4 1-1v-9.6l2.3 2.3c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4l-4-4c-.1-.1-.2-.2-.3-.2-.2-.1-.5-.1-.8 0-.1 0-.2.1-.3.2l-4 4c-.4.4-.4 1 0 1.4s1 .4 1.4 0zm12.3 6.3c-.6 0-1 .4-1 1v4c0 .6-.4 1-1 1h-14c-.6 0-1-.4-1-1v-4c0-.6-.4-1-1-1s-1 .4-1 1v4c0 1.7 1.3 3 3 3h14c1.7 0 3-1.3 3-3v-4c0-.6-.4-1-1-1z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Левая панель -->
+                    <div class="lab-sidebar">
+                        <div class="lab-params-container">
+                            <h3 class="lab-sidebar-title">Параметры</h3>
+                            <div class="lab-params">
+                                <div class="param-group">
+                                    <label data-translate="education_language">Язык образования</label>
+                                    <div class="lang-switch">
+                                        <!-- Здесь чекбоксы или переключатели языка -->
+                                        <label>
+                                            <input type="radio" name="edu_lang" value="kaz" checked>
+                                            <span data-translate="lang_kz">KZ</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="edu_lang" value="rus">
+                                            <span data-translate="lang_ru">RU</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="param-group">
+                                    <label data-translate="class_level">Класс обучения</label>
+                                    <div class="class-switch">
+                                        <label>
+                                            <input type="radio" name="class_level" value="4">
+                                            <span>4</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="5">
+                                            <span>5</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="6">
+                                            <span>6</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="7">
+                                            <span>7</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="8">
+                                            <span>8</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="9">
+                                            <span>9</span> 
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="10-emn">
+                                            <span>10-ЕМН</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="10-ogn">
+                                            <span>10-ОГН</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="11-emn">
+                                            <span>11-ЕМН</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="class_level" value="11-ogn">
+                                            <span>11-ОГН</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="param-group">
+                                    <label for="subject-select">Предмет</label>
+                                    <select id="subject-select" class="subject-select">
+                                        <!-- Опции будут добавлены динамически -->
+                                    </select>
+                                </div>
+                                
+                                <!-- Список авторов (заменили input на select) -->
+                                <div class="param-group">
+                                    <label for="author-select" data-translate="author">Автор</label>
+                                    <select id="author-select" class="author-select">
+                                        <!-- Опции добавляются динамически -->
+                                    </select>
+                                </div>
+                                
+                                <div class="param-group">
+                                    <label data-translate="theme">Тема</label>
+                                    <input type="text" name="theme">
+                                </div>
+                                
+                                <div class="param-group">
+                                    <label class="difficulty-title">Уровень сложности</label>
+                                    <div class="difficulty-level">
+                                        <div class="difficulty-slider-container">
+                                            <input type="range" class="difficulty-slider" min="0" max="4" step="1" value="2">
+                                            <div class="difficulty-points">
+                                                <div class="difficulty-point"></div>
+                                                <div class="difficulty-point"></div>
+                                                <div class="difficulty-point"></div>
+                                                <div class="difficulty-point"></div>
+                                                <div class="difficulty-point"></div>
+                                            </div>
+                                        </div>
+                                        <div class="difficulty-label">Нормальный</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="param-group">
+                                    <label>Конструктор теста</label>
+                                    <div class="test-constructor">
+                                        <div class="test-row">
+                                            <select class="questions-select" placeholder="Вопросы">
+                                                <option value="" disabled selected>Вопросы</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+                                            </select>
+                                            
+                                            <select class="type-select" placeholder="Тип">
+                                                <option value="" disabled selected>Тип</option>
+                                                <option value="closed">Закрытый</option>
+                                                <option value="open">Открытый</option>
+                                            </select>
+                                            
+                                            <select class="answers-select" placeholder="Ответы" disabled>
+                                                <option value="" disabled selected>Ответы</option>
+                                                <!-- Опции будут добавляться динамически -->
+                                            </select>
+                                            
+                                            <select class="points-select" placeholder="Баллы">
+                                                <option value="" disabled selected>Баллы</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="add-test-row">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                                            <path d="M7 0C7.55228 0 8 0.447715 8 1V6H13C13.5523 6 14 6.44772 14 7C14 7.55228 13.5523 8 13 8H8V13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13V8H1C0.447715 8 0 7.55228 0 7C0 6.44772 0.447715 6 1 6H6V1C6 0.447715 6.44772 0 7 0Z" fill="#2C88F7"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="param-group">
+                                    <label data-translate="custom_settings">Пользовательские настройки</label>
+                                    <textarea name="custom_settings" placeholder="Введите текст..." data-translate="custom_settings_placeholder"></textarea>
+                                </div>
+
+                                <div class="param-group">
+                                    <div class="pisa-toggle-container">
+                                        <label>Метолодогия PISA</label>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" class="pisa-toggle">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lab-buttons-row">
+                            <button class="generate-btn">
+                                <span>Сгенерировать</span>
+                                <svg fill="none" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd" d="m17.4917 2c-.8299 0-1.5035.67276-1.5035 1.50266s.6736 1.50266 1.5035 1.50266 1.5035-.67276 1.5035-1.50266-.6736-1.50266-1.5035-1.50266zm-14.40446 13.7104 9.46266-9.45716c.8401-.83964 2.2022-.83963 3.0423 0l2.1696 2.1684c.8402.83963.8402 2.20096 0 3.04056l-9.46259 9.4572c-1.43925 1.4384-3.77272 1.4384-5.21196 0s-1.43925-3.7705-.00001-5.209zm10.87726-8.04336-2.9637 2.96196 2.3828 2.3814 2.9636-2.962c.0589-.05881.0589-.15415 0-.21296l-2.1696-2.1684c-.0589-.0588-.1543-.0588-.2131 0zm-9.46264 9.45726 5.08435-5.0815 2.38269 2.3814-5.08431 5.0814c-.65797.6576-1.72475.6576-2.38272 0-.65798-.6576-.65798-1.7238-.00001-2.3813zm14.49494-4.6057c0-.8299.6736-1.5026 1.5035-1.5026s1.5036.6727 1.5036 1.5026-.6737 1.5027-1.5036 1.5027-1.5035-.6728-1.5035-1.5027zm-7.5192-10.5186c-.8299 0-1.5035.67276-1.5035 1.50266s.6736 1.50266 1.5035 1.50266 1.5035-.67276 1.5035-1.50266-.6736-1.50266-1.5035-1.50266z" fill="#FFFFFF" fill-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Рабочая зона -->
+                    <div class="lab-workspace">
+                        <div class="workspace-input-container">
+                            <textarea class="workspace-input"></textarea>
+                            <!-- Добавляем чат сюда -->
+                            <div class="chat-input-container">
+                                <textarea class="chat-input" placeholder="Введите ваше сообщение..."></textarea>
+                                <!-- ... existing code ... -->
+                                <button class="send-button">
+                                    <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="15" cy="15" r="15" fill="#2C88F7"/>
+                                        <g fill="#FFFFFF" transform="translate(15,15) rotate(-45) translate(-12,-12) scale(1)">
+                                            <path d="m7 18c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l10-10c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-10 10c-.2.2-.4.3-.7.3z"/>
+                                            <path d="m17 17c-.6 0-1-.4-1-1v-8h-8c-.6 0-1-.4-1-1s.4-1 1-1h9c.6 0 1 .4 1 1v9c0 .6-.4 1-1 1z"/>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="workspace-boxes">
+                            <div class="workspace-box-main">
+                                <label class="workspace-label">Правильные ответы</label>
+                                <div id="answersDisplay" class="answers-display" contenteditable="true" 
+                                    placeholder="Здесь появятся правильные ответы"></div>
+                            </div>
+                            <div class="workspace-box-secondary">
+                                <label class="workspace-label">Комментарии от ИИ</label>
+                                <textarea id="ai-comments" readonly placeholder="Здесь будут комментарии от ИИ по вашим запросам"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+              
+              <section id="section-tasks" class="section">
+                <h2 class="wide" data-translate="check_homework">Проверка домашних заданий</h2>
+              </section>
+              
+              <section id="section-students" class="section">
+                <h2 class="wide" data-translate="class_management">Учебные классы</h2>
+              </section>
+      
+              <section id="section-journal" class="section">
+                <h2 data-translate="work_journal">Журнал работ</h2>
+              </section>
+                <div class="icon-container">
+                <div class="icon active" data-section="section-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M13.75 20.1667H8.25002C6.32502 20.1667 5.31669 20.1667 4.49169 19.3417C3.66669 18.5167 3.66669 17.5083 3.66669 15.5833V8.25H5.50002V15.5833C5.50002 16.9583 5.50002 17.7833 5.77502 18.0583C6.05002 18.3333 6.87502 18.3333 8.25002 18.3333H13.75C15.125 18.3333 15.95 18.3333 16.225 18.0583C16.5 17.7833 16.5 16.9583 16.5 15.5833V8.25H18.3334V15.5833C18.3334 17.5083 18.3334 18.5167 17.5084 19.3417C16.6834 20.1667 15.675 20.1667 13.75 20.1667Z" fill="#353535"/>
+                        <path d="M19.25 10.9995C19.0667 10.9995 18.7917 10.9079 18.6084 10.7245L11.55 4.49121C11.1834 4.21621 10.725 4.21621 10.3584 4.49121L3.30002 10.7245C2.93335 11.0912 2.38335 10.9995 2.01668 10.6329C1.65002 10.2662 1.74168 9.71621 2.10835 9.34954L9.16668 3.11621C10.175 2.19954 11.7334 2.19954 12.8334 3.11621L19.8917 9.34954C20.2584 9.71621 20.35 10.2662 19.9834 10.6329C19.7084 10.9079 19.525 10.9995 19.25 10.9995Z" fill="#353535"/>
+                        <path d="M12.8333 20.1663C12.2833 20.1663 11.9167 19.7997 11.9167 19.2497V15.583C11.9167 15.033 11.55 14.6663 11 14.6663C10.45 14.6663 10.0833 15.033 10.0833 15.583V19.2497C10.0833 19.7997 9.71667 20.1663 9.16667 20.1663C8.61667 20.1663 8.25 19.7997 8.25 19.2497V15.583C8.25 14.0247 9.44167 12.833 11 12.833C12.5583 12.833 13.75 14.0247 13.75 15.583V19.2497C13.75 19.7997 13.3833 20.1663 12.8333 20.1663Z" fill="#353535"/>
+                    </svg>
+                    <span class="icon-text" data-translate="main_menu">Главное меню</span>
+                </div>
+                <div class="icon" data-section="section-lab">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="m12 14.9c-.3 0-.6-.1-.9-.2l-7.9-4.4c-.5-.3-.8-.8-.8-1.3s.3-1 .7-1.2l7.9-4.4c.6-.3 1.3-.3 1.8 0l8.1 4.5c.4.2.7.7.7 1.1s-.3.9-.7 1.1l-8.1 4.5c-.2.2-.5.3-.8.3zm-6.9-5.9 6.9 3.9 6.9-3.9-6.9-3.9z" fill="#353535"/>
+                        <path d="m12 20.5c-.6 0-1.2-.2-1.7-.5-.8-.5-1.5-.9-2.1-1.1-.4-.2-1-.3-1.8-.5-1.4-.4-2.4-1.7-2.3-3.2l.4-4.8c0-.6.5-1 1.1-.9.6 0 1 .5.9 1.1l-.4 4.8c0 .5.3 1 .8 1.1.8.2 1.4.4 1.9.6.7.3 1.5.7 2.5 1.3.4.3 1 .3 1.4 0 .9-.6 1.8-1 2.5-1.3.5-.2 1.1-.4 1.9-.6.5-.1.8-.6.8-1.1l-.4-4.8c0-.6.4-1 .9-1.1.5 0 1 .4 1.1.9l.4 4.8c.1 1.4-.8 2.8-2.3 3.2-.7.2-1.3.4-1.8.5-.6.2-1.3.6-2.1 1.1-.5.4-1.1.5-1.7.5z" fill="#353535"/>
+                        <path d="m8 21c-.6 0-1-.4-1-1v-6.3c0-1.1.6-2.1 1.5-2.6l2.5-1.5c.5-.3 1.1-.1 1.4.4s.1 1.1-.4 1.4l-2.5 1.4c-.3.2-.5.5-.5.9v6.3c0 .6-.4 1-1 1z" fill="#353535"/>
+                    </svg>
+                    <span class="icon-text" data-translate="laboratory">Лаборатория</span>
+                </div>
+                <div class="icon" data-section="section-tasks">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M15.5834 20.167H6.41669C5.68335 20.167 4.95002 19.892 4.49169 19.342C3.94169 18.8837 3.66669 18.1503 3.66669 17.417V6.41699C3.66669 5.68366 3.94169 4.95033 4.49169 4.49199C4.95002 3.94199 5.68335 3.66699 6.41669 3.66699H8.25002C8.80002 3.66699 9.16669 4.03366 9.16669 4.58366C9.16669 5.13366 8.80002 5.50033 8.25002 5.50033H6.41669C6.14169 5.50033 5.95835 5.59199 5.77502 5.77533C5.59169 5.95866 5.50002 6.14199 5.50002 6.41699V17.417C5.50002 17.692 5.59169 17.8753 5.77502 18.0587C5.95835 18.242 6.14169 18.3337 6.41669 18.3337H15.5834C15.8584 18.3337 16.0417 18.242 16.225 18.0587C16.4084 17.8753 16.5 17.692 16.5 17.417V6.41699C16.5 6.14199 16.4084 5.95866 16.225 5.77533C16.0417 5.59199 15.8584 5.50033 15.5834 5.50033H13.75C13.2 5.50033 12.8334 5.13366 12.8334 4.58366C12.8334 4.03366 13.2 3.66699 13.75 3.66699H15.5834C16.3167 3.66699 17.05 3.94199 17.5084 4.49199C18.0584 4.95033 18.3334 5.68366 18.3334 6.41699V17.417C18.3334 18.1503 18.0584 18.8837 17.5084 19.342C16.9584 19.8003 16.3167 20.167 15.5834 20.167Z" fill="#353535"/>
+                        <path d="M11.9166 7.33301H10.0833C8.52498 7.33301 7.33331 6.14134 7.33331 4.58301C7.33331 3.02467 8.52498 1.83301 10.0833 1.83301H11.9166C13.475 1.83301 14.6666 3.02467 14.6666 4.58301C14.6666 6.14134 13.475 7.33301 11.9166 7.33301ZM10.0833 3.66634C9.53331 3.66634 9.16665 4.03301 9.16665 4.58301C9.16665 5.13301 9.53331 5.49967 10.0833 5.49967H11.9166C12.4666 5.49967 12.8333 5.13301 12.8333 4.58301C12.8333 4.03301 12.4666 3.66634 11.9166 3.66634H10.0833Z" fill="#353535"/>
+                        <path d="M10.0833 15.583C9.80831 15.583 9.62498 15.4913 9.44165 15.308L7.60831 13.4747C7.24165 13.108 7.24165 12.558 7.60831 12.1913C7.97498 11.8247 8.52498 11.8247 8.89165 12.1913L10.0833 13.383L13.1083 10.358C13.475 9.99134 14.025 9.99134 14.3916 10.358C14.7583 10.7247 14.7583 11.2747 14.3916 11.6413L10.725 15.308C10.5416 15.4913 10.3583 15.583 10.0833 15.583Z" fill="#353535"/>
+                    </svg>
+                    <span class="icon-text" data-translate="check_homework">Проверка заданий</span>
+                </div>
+                <!-- Иконка users (Управление классами) -->
+                <div class="icon" data-section="section-students">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="m9 11.92c2.48 0 4.5-2.01996 4.5-4.49996s-2.02-4.5-4.5-4.5-4.5 2.02-4.5 4.5 2.02 4.49996 4.5 4.49996zm0-6.99996c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill="#353535"/>
+                        <path d="m12 12.92h-6c-2.21 0-4 1.79-4 4v1c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-1c0-2.21-1.79-4-4-4zm2 5c0 1.1-.9 2-2 2h-6c-1.1 0-2-.9-2-2v-1c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2z" fill="#353535"/>
+                        <path d="m19.31 13.92h-1.95c-.55 0-1 .45-1 1s.45 1 1 1h1.95c.38 0 .69.31.69.69v1.31c0 1.1-.9 2-2 2h-.64c-.55 0-1 .45-1 1s.45 1 1 1h.64c2.21 0 4-1.79 4-4v-1.31c0-1.48-1.21-2.69-2.69-2.69z" fill="#353535"/>
+                        <path d="m18 12.92c1.65 0 3-1.35 3-2.99996 0-1.65-1.35-3-3-3s-3 1.35-3 3c0 1.64996 1.35 2.99996 3 2.99996zm0-3.99996c.55 0 1 .45 1 1 0 .54996-.45.99996-1 .99996s-1-.45-1-.99996c0-.55.45-1 1-1z" fill="#353535"/>
+                    </svg>
+                    <span class="icon-text" data-translate="class_management">Управление классами</span>
+                </div>
+                <div class="icon" data-section="section-journal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5604 1.95582C11.5044 1.54501 10.3863 2.20969 10.1353 3.28188L8.82975 2.83042C7.64261 2.41991 6.41667 3.33657 6.41667 4.63473V5.08028L5.11014 4.67367C3.93385 4.30759 2.75 5.22135 2.75 6.49535V15.3505C2.75 16.6245 3.93385 17.5383 5.11014 17.1722L6.41667 16.7656V17.2111C6.41667 18.5093 7.64261 19.4259 8.82975 19.0155L10.1074 18.5736C10.2757 19.6475 11.3033 20.383 12.3613 20.1086L17.8613 18.6822C18.6775 18.4705 19.25 17.7098 19.25 16.8371V5.87626C19.25 5.08346 18.7759 4.37382 18.0604 4.09545L12.5604 1.95582ZM8.25 15.5096C8.25032 15.4951 8.25032 15.4806 8.25 15.4661V6.37975C8.25032 6.36522 8.25032 6.35073 8.25 6.33628V4.63473L9.79348 5.16845C9.88955 5.20169 9.98727 5.21749 10.0833 5.21751V13.8709V16.6284C9.98727 16.6284 9.88955 16.6441 9.79348 16.6774L8.25 17.2111V15.5096ZM6.41667 7.06592V14.7799L4.58333 15.3505V6.49535L6.41667 7.06592ZM11.9167 3.73662L17.4167 5.87626V16.8371L11.9167 18.2635V13.8709V3.73662Z" fill="#353535"/>
+                    </svg>
+                    <span class="icon-text" data-translate="work_journal">Журнал работ</span>
+                </div>
+            </div>
+        </div>
+    </main>
+<script src="/js/translator.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/subjects.js"></script>
+<script src="/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+</body>
+</html>

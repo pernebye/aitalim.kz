@@ -1,0 +1,836 @@
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gilroy', sans-serif;
+    background-color: #F5F5F5;
+    min-height: 100vh;
+}
+
+.auth-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.auth-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-box {
+    position: relative;
+    z-index: 2;
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 25px 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 520px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: min-height 0.3s ease-in-out;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h1 {
+    color: #2C88F7;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+/* Стили формы */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group,
+.birth-date-group,
+.verification-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    color: #353535;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2C88F7;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 4px;
+}
+
+.forgot-password a {
+    color: #2C88F7;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.auth-button {
+    background: #2C88F7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 16px;
+}
+
+.auth-button:hover {
+    background: #1B6CD4;
+}
+
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #353535;
+}
+
+.auth-footer a {
+    color: #2C88F7;
+    text-decoration: none;
+    margin-left: 8px;
+}
+
+/* Темная тема */
+body.dark-theme {
+    background-color: #1A1A1A;
+}
+
+body.dark-theme .auth-box {
+    background: #262626;
+}
+
+body.dark-theme h1,
+body.dark-theme label,
+body.dark-theme .auth-footer {
+    color: #FFFFFF;
+}
+
+body.dark-theme input {
+    background: #1A1A1A;
+    border-color: #353535;
+    color: #FFFFFF;
+}
+
+body.dark-theme input:focus {
+    border-color: #2C88F7;
+}
+
+/* Запрет скролла */
+.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+}
+
+/* Ст для разделителя */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0 40px;
+    margin-left: -40px;
+    margin-right: -40px;
+    position: relative;
+}
+
+.divider-line {
+    height: 1px;
+    background-color: #E0E0E0;
+    flex: 1;
+}
+
+.divider-text {
+    padding: 0 15px;
+    color: #888888;
+    white-space: nowrap;
+}
+
+/* Для темной темы */
+body.dark-theme .divider-line {
+    background-color: #353535;
+}
+
+/* Стили для Google Auth */
+.google-auth-container {
+    margin-bottom: 20px;
+}
+
+/* Темная тема */
+body.dark-theme .auth-divider span {
+    background-color: #262626;
+    color: #FFFFFF;
+}
+
+body.dark-theme .auth-divider::before,
+body.dark-theme .auth-divider::after {
+    background-color: #353535;
+}
+
+/* Стили для многошаговой формы */
+.form-steps {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    overflow: hidden;
+    transition: min-height 0.3s ease-in-out;
+}
+
+.step {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    transform-origin: center center;
+}
+
+.step.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    visibility: visible;
+}
+
+.step.prev {
+    transform: translateX(-100%) scale(0.95);
+}
+
+/* Анимация для элементов внутри шага */
+.form-steps .input-group {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: calc(var(--index) * 0.1s);
+}
+
+.form-steps .step.active .input-group {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Обычная форма авторизации не должна иметь этих эффектов */
+.auth-form:not(.form-steps .auth-form) .input-group {
+    transform: none;
+    opacity: 1;
+    transition: none;
+}
+
+.birth-date-group {
+    margin-bottom: 0;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 10px;
+}
+
+.date-inputs select {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+}
+
+.date-inputs select:focus {
+    outline: none;
+    border-color: #2C88F7;
+}
+
+/* Стили для выпадающих списков */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    appearance: none; /* Убираем тнартную стрелку */
+    background-image: url("data:image/svg+xml,..."); /* Добавим свою стрелку */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+/* Стили для группы даты рождения */
+.birth-date-group {
+    margin-bottom: 20px;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 10px;
+}
+
+/* Стили для третьего шага */
+.step-3 .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: min-height 0.3s ease-in-out;
+}
+
+.step-3 .birth-date-group {
+    margin-bottom: 0;
+}
+
+/* Стили для верификации */
+.verification-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.verification-group label {
+    margin-bottom: 6px;
+}
+
+.verification-input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.verification-input-group input {
+    width: 120px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.verify-button {
+    background: #2C88F7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.verification-hint {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+#register-button {
+    margin-top: 16px;
+}
+
+/* Добавьте после стилей .input-group */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+#password, #confirm-password {
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.password-toggle svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+}
+
+.eye-icon {
+    fill: #353535;
+    opacity: 0.75;
+    transition: all 0.3s ease;
+}
+
+.slash-icon {
+    pointer-events: none;
+    transform: translate(-50%, -50%) rotate(45deg) !important;
+    width: 20.5px !important;
+    height: 20.5px !important;
+    filter: drop-shadow(0 0 0.2px white) 
+           drop-shadow(0 0 0.2px white) 
+           drop-shadow(0 0 0.2px white)
+           drop-shadow(0 0 0.2px white) 
+           drop-shadow(0 0 0.2px white)
+           drop-shadow(0 0 0.2px white);
+}
+
+.eye-slash {
+    stroke: #353535;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 21;
+    stroke-dashoffset: -21;
+    opacity: 0.75;
+    transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.password-toggle[data-visible="true"] .eye-slash {
+    stroke-dashoffset: 0;
+}
+
+.password-toggle[data-visible="false"] .eye-slash {
+    stroke-dashoffset: 21;
+}
+
+/* Для темной темы */
+body.dark-theme .slash-icon {
+    filter: drop-shadow(0 0 0.2px #262626) 
+           drop-shadow(0 0 0.2px #262626) 
+           drop-shadow(0 0 0.2px #262626)
+           drop-shadow(0 0 0.2px #262626) 
+           drop-shadow(0 0 0.2px #262626)
+           drop-shadow(0 0 0.2px #262626);
+}
+
+.password-toggle:hover .eye-icon {
+    fill: #2C88F7;
+    opacity: 1;
+}
+
+.password-toggle:hover .eye-slash {
+    stroke: #2C88F7;
+}
+
+/* Для темной темы */
+body.dark-theme .eye-icon {
+    fill: #FFFFFF;
+}
+
+body.dark-theme .eye-slash {
+    stroke: #FFFFFF;
+}
+
+body.dark-theme .password-toggle:hover .eye-icon {
+    fill: #2C88F7;
+}
+
+body.dark-theme .password-toggle:hover .eye-slash {
+    stroke: #2C88F7;
+}
+
+.password-hint {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+.hint-item {
+    margin-bottom: 2px;
+}
+
+body.dark-theme .password-hint {
+    color: #999;
+}
+
+.password-tooltip {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 12px;
+    color: #666;
+    width: 200px;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.password-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: #FFFFFF;
+    border-left: 1px solid #E0E0E0;
+    border-top: 1px solid #E0E0E0;
+    transform: rotate(45deg);
+}
+
+body.dark-theme .password-tooltip {
+    background: #262626;
+    border-color: #353535;
+    color: #999;
+}
+
+body.dark-theme .password-tooltip::before {
+    background: #262626;
+    border-color: #353535;
+}
+
+.password-requirements {
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #666;
+    width: 220px;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 1000002;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.password-requirements::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: #FFFFFF;
+    border-left: 1px solid #E0E0E0;
+    border-top: 1px solid #E0E0E0;
+    transform: rotate(45deg);
+}
+
+.password-requirements ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.password-requirements li {
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+body.dark-theme .password-requirements {
+    background: #262626;
+    border-color: #353535;
+    color: #999;
+}
+
+body.dark-theme .password-requirements::before {
+    background: #262626;
+    border-color: #353535;
+}
+
+/* Для группы с паролем */
+.input-group:has(#password) {
+    position: relative;
+    z-index: 2;
+}
+
+/* Для группы с подтверждением пароля */
+.input-group:has(#confirm-password) {
+    position: relative;
+    z-index: 1;
+}
+
+.lang-bookmark {
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: #FFFFFF;
+    border-radius: 0 6px 6px 0;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1;
+    transform: translateX(80px); /* Прячем большую часть закладки */
+    transition: transform 0.3s ease;
+}
+
+.lang-options {
+    display: flex;
+    height: 100%;
+    gap: 12px; /* Расстояние между языками */
+    padding: 0 12px; /* Внешний отступ */
+}
+
+.lang-option {
+    font-size: 16px;
+    font-weight: 600;
+    color: #888888;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.lang-option:hover:not(.current-lang) {
+    color: #2C88F7;
+}
+
+.lang-option.current-lang {
+    color: #353535;
+    cursor: default;
+}
+
+/* Темная тема */
+body.dark-theme .lang-option {
+    color: #888888;
+}
+
+body.dark-theme .lang-option.current-lang {
+    color: #FFFFFF;
+}
+
+body.dark-theme .lang-option:not(.current-lang):hover {
+    color: #2C88F7;
+}
+
+.lang-bookmark:hover {
+    transform: translateX(145px); /* Показываем всю закладку */
+}
+
+/* Темная тема */
+body.dark-theme .lang-bookmark {
+    background-color: #262626;
+}
+
+/* Стили для официальной кнопки Google */
+.custom-google-btn {
+    width: 100% !important;
+}
+
+.custom-google-btn iframe {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+.custom-google-btn > div > iframe {
+    border: 1px solid #E0E0E0 !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
+}
+
+.custom-google-btn > div > iframe:hover {
+    border-color: #D0D0D0 !important;
+    background: #F5F5F5 !important;
+}
+
+/* Для темной темы */
+body.dark-theme .custom-google-btn > div > iframe {
+    background: #262626 !important;
+    border-color: #353535 !important;
+}
+
+body.dark-theme .custom-google-btn > div > iframe:hover {
+    background: #353535 !important;
+    border-color: #404040 !important;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #2C88F7;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.google-auth-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.google-auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 14px;
+    color: #1A1A1A;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.google-auth-button:hover {
+    background: #F5F5F5;
+    border-color: #D0D0D0;
+}
+
+.google-auth-button img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+/* Для темной темы */
+body.dark-theme .google-auth-button {
+    background: #262626;
+    border-color: #353535;
+    color: #FFFFFF;
+}
+
+body.dark-theme .google-auth-button:hover {
+    background: #353535;
+    border-color: #404040;
+}
+
+/* Стили для страницы логина */
+.auth-form .password-input-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.auth-form .password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.auth-form .eye-slash {
+    stroke: #353535;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 21;
+    stroke-dashoffset: -21;
+    opacity: 0.75;
+    transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-form .password-toggle[data-visible="true"] .eye-slash {
+    stroke-dashoffset: 0;
+}
+
+.auth-form .password-toggle[data-visible="false"] .eye-slash {
+    stroke-dashoffset: 21;
+}
+
+/* Общие стили для обеих форм */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+/* Специфичные стили для формы логина */
+.login-form .password-input-wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.login-form .password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.login-form .eye-slash {
+    stroke: #353535;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-dasharray: 21;
+    stroke-dashoffset: -21;
+    opacity: 0.75;
+    transition: stroke-dashoffset 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-form .password-toggle[data-visible="true"] .eye-slash {
+    stroke-dashoffset: 0;
+}
+
+.login-form .password-toggle[data-visible="false"] .eye-slash {
+    stroke-dashoffset: 21;
+}

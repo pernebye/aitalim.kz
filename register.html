@@ -1,0 +1,174 @@
+<!-- register.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="/auth-styles.css">
+    <script src="https://accounts.google.com/gsi/client" async></script>
+</head>
+<body class="no-scroll">
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <div class="lang-bookmark">
+                <div class="lang-options">
+                    <div class="lang-option" data-lang="en">EN</div>
+                    <div class="lang-option" data-lang="kz">KZ</div>
+                    <div class="lang-option current-lang" data-lang="ru">RU</div>
+                </div>
+            </div>
+            
+            <div class="auth-box">
+                <h1 data-translate="register">Регистрация</h1>
+                
+                <div class="form-steps">
+                    <div class="step step-1 active">
+                        <form class="auth-form register-form" id="step1Form">
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" autocomplete="email" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="password" data-translate="password">Пароль</label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="password" name="password" autocomplete="new-password" required>
+                                    <button type="button" class="password-toggle" aria-label="Показать/скрыть пароль">
+                                        <svg class="eye-icon" viewBox="0 0 24 24">
+                                            <path d="m11.96 19.7c-4.40999 0-7.59999-3.23-9.10999-5.15-1.19-1.52-1.15001-3.61.09999-5.09 1.98-2.35 5.17-5.15 9.06-5.15s7.08 2.81 9.05 5.18c1.23 1.48 1.25 3.64.04 5.13-1.88 2.32-4.99 5.09-9.13 5.09zm.05-13.39c-3.12 0-5.82 2.42-7.53 4.44-.63.75-.65 1.8-.05 2.57 1.29 1.64 3.98001 4.39 7.54 4.39 3.36 0 5.98-2.36 7.58-4.35.62-.76.61-1.83-.03-2.59-1.39-1.66-4.2-4.46-7.51-4.46z"/>
+                                            <path d="m12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                                        </svg>
+                                        <svg class="slash-icon" viewBox="0 0 24 24">
+                                            <line x1="3" y1="12" x2="21" y2="12" class="eye-slash"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="confirm-password" data-translate="confirm_password">Подтвердите пароль</label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="auth-button" data-translate="continue">
+                                Продолжить
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="step step-2">
+                        <form class="auth-form" id="step2Form">
+                            <div class="input-group">
+                                <label for="lastname" data-translate="lastname">Фамилия</label>
+                                <input type="text" id="lastname" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="firstname" data-translate="firstname">Имя</label>
+                                <input type="text" id="firstname" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="middlename" data-translate="middlename_optional">Отчество (необязательно)</label>
+                                <input type="text" id="middlename">
+                            </div>
+
+                            <button type="submit" class="auth-button" data-translate="continue">
+                                Продолжить
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="step step-3">
+                        <form class="auth-form" id="step3Form">
+                            <div class="birth-date-group">
+                                <label>Дата рождения</label>
+                                <div class="date-inputs">
+                                    <select id="birth-day" required>
+                                        <option value="">День</option>
+                                    </select>
+
+                                    <select id="birth-month" required>
+                                        <option value="">Месяц</option>
+                                        <option value="01">Январь</option>
+                                        <option value="02">Февраль</option>
+                                        <option value="03">Март</option>
+                                        <option value="04">Апрель</option>
+                                        <option value="05">Май</option>
+                                        <option value="06">Июнь</option>
+                                        <option value="07">Июль</option>
+                                        <option value="08">Август</option>
+                                        <option value="09">Сентябрь</option>
+                                        <option value="10">Октябрь</option>
+                                        <option value="11">Ноябрь</option>
+                                        <option value="12">Декабрь</option>
+                                    </select>
+
+                                    <input type="number" id="birth-year" required placeholder="Год" min="1940" max="2006">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="city" data-translate="city">Город</label>
+                                <select id="city" required>
+                                    <option value="">Выберите город</option>
+                                    <option value="almaty">Алматы</option>
+                                    <option value="astana">Астана</option>
+                                    <option value="shymkent">Шымкент</option>
+                                    <option value="karaganda">Караганда</option>
+                                    <option value="aktobe">Актобе</option>
+                                    <option value="taraz">Тараз</option>
+                                    <option value="pavlodar">Павлодар</option>
+                                    <option value="uskaman">Усть-Каменогорск</option>
+                                    <option value="semey">Cемей</option>
+                                    <option value="atyrau">Атырау</option>
+                                    <!-- Добавьте другие города -->
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="phone" data-translate="phone">Телефон</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+
+                            <div class="input-group verification-group" style="display: none;">
+                                <label for="verification-code" data-translate="verification_code">Код подтверждения</label>
+                                <div class="verification-input-group">
+                                    <input type="text" id="verification-code" maxlength="4" required>
+                                    <button type="button" class="verify-button" data-translate="verify">Подтвердить</button>
+                                </div>
+                                <span class="verification-hint" data-translate="enter_code">Введите код: 7777</span>
+                            </div>
+
+                            <button type="submit" class="auth-button" id="register-button" disabled data-translate="register_button">
+                                Зарегистрироваться
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    <span data-translate="have_account">Уже есть аккаунт?</span>
+                    <a href="login.html" data-translate="login_link">Войти</a>
+                </div>
+
+                <div class="auth-divider">
+                    <div class="divider-line divider-line-left"></div>
+                    <span class="divider-text" data-translate="or">или</span>
+                    <div class="divider-line divider-line-right"></div>
+                </div>
+
+                <div class="google-auth-container">
+                    <div id="g_id_signin" style="width: 400px; margin: 20px auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/translator.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

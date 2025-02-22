@@ -1,0 +1,78 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/auth-styles.css">
+    <script src="https://accounts.google.com/gsi/client" async></script>
+</head>
+<body class="no-scroll">
+    <div class="auth-container">
+        <div class="auth-wrapper">
+            <div class="lang-bookmark">
+                <div class="lang-options">
+                    <div class="lang-option" data-lang="en">EN</div>
+                    <div class="lang-option" data-lang="kz">KZ</div>
+                    <div class="lang-option current-lang" data-lang="ru">RU</div>
+                </div>
+            </div>
+            
+            <div class="auth-box">
+                <h1 data-translate="login">Вход в систему</h1>
+                
+                <div class="form-steps">
+                    <div class="step step-1 active">
+                        <form class="auth-form login-form">
+                            <div class="input-group">
+                                <label for="email" data-translate="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="password" data-translate="password">Пароль</label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="password" name="password" autocomplete="new-password" required>
+                                    <button type="button" class="password-toggle" aria-label="Показать/скрыть пароль">
+                                        <svg class="eye-icon" viewBox="0 0 24 24">
+                                            <path d="m11.96 19.7c-4.40999 0-7.59999-3.23-9.10999-5.15-1.19-1.52-1.15001-3.61.09999-5.09 1.98-2.35 5.17-5.15 9.06-5.15s7.08 2.81 9.05 5.18c1.23 1.48 1.25 3.64.04 5.13-1.88 2.32-4.99 5.09-9.13 5.09zm.05-13.39c-3.12 0-5.82 2.42-7.53 4.44-.63.75-.65 1.8-.05 2.57 1.29 1.64 3.98001 4.39 7.54 4.39 3.36 0 5.98-2.36 7.58-4.35.62-.76.61-1.83-.03-2.59-1.39-1.66-4.2-4.46-7.51-4.46z"/>
+                                            <path d="m12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                                        </svg>
+                                        <svg class="slash-icon" viewBox="0 0 24 24">
+                                            <line x1="3" y1="12" x2="21" y2="12" class="eye-slash"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="auth-button" data-translate="login_button">
+                                Войти
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    <span data-translate="no_account">Нет аккаунта?</span>
+                    <a href="register.html" data-translate="register_link">Зарегистрироваться</a>
+                </div>
+
+                <div class="auth-divider">
+                    <div class="divider-line divider-line-left"></div>
+                    <span class="divider-text" data-translate="or">или</span>
+                    <div class="divider-line divider-line-right"></div>
+                </div>
+
+                <div class="google-auth-container">
+                    <div id="g_id_signin" style="width: 400px; margin: 20px auto;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/translator.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>
