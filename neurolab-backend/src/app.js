@@ -12,6 +12,7 @@ import fetch from 'node-fetch';
 import Papa from 'papaparse';
 import authRoutes from './routes/auth.js';
 import dotenv from 'dotenv';
+import https from 'https';
 
 // Для работы с __dirname в ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -55,14 +56,13 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: [
+        'https://aitalim.kz',
+        'http://194.32.140.113',
         'http://localhost:3000',
         'http://localhost:5000',
         'http://127.0.0.1:3000',
         'http://127.0.0.1:5000',
         'https://accounts.google.com',
-        'https://*.ngrok.io',
-        'https://*.ngrok-free.app',
-        'https://4bbf-212-45-80-203.ngrok-free.app'  // Добавьте ваш конкретный домен
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -820,6 +820,18 @@ app.get('*', (req, res, next) => {
 
     res.sendFile(path.join(__dirname, '../../index.html'));
 });
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/chain.pem', 'utf8');
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca
+};
+
+const httpsServer = https.createServer(credentials, app);
 
 // Экспортируем приложение
 export default app;

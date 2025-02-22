@@ -9,7 +9,7 @@
  ******************************************************/
 
 // Например, базовый адрес API, если нужно
-const API_BASE_URL = window.location.origin;
+const API_BASE_URL = 'https://aitalim.kz';
 
 // Функция для отображения ошибок (всплывающее уведомление)
 function showError(message) {
