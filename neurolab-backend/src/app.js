@@ -55,18 +55,16 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: [
-        'https://aitalim.kz',
-        'http://194.32.140.113',
-        'http://localhost:3000',
-        'http://localhost:5000',
-        'http://127.0.0.1:3000',
-        'http://127.0.0.1:5000',
-        'https://accounts.google.com',
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+  origin: [
+      process.env.API_URL,
+      'https://aitalim.kz',
+      'http://194.32.140.113',
+      'http://localhost:3000',
+      'http://localhost:5000'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // CSP middleware
@@ -821,17 +819,40 @@ app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, '../../index.html'));
 });
 
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/chain.pem', 'utf8');
+let httpsServer;
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-};
+try {
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/aitalim.kz/chain.pem', 'utf8');
 
-const httpsServer = https.createServer(credentials, app);
+    const credentials = {
+        key: privateKey,
+        cert: certificate,
+        ca: ca
+    };
+
+    httpsServer = https.createServer(credentials, app);
+} catch (error) {
+    console.log('SSL сертификаты не найдены, запуск только HTTP сервера');
+}
+
+// Запуск сервера
+const PORT = process.env.PORT || 3000;
+if (httpsServer) {
+    httpsServer.listen(443, () => {
+        console.log('HTTPS Сервер запущен на порту 443');
+    });
+    
+    // Редирект с HTTP на HTTPS
+    app.listen(80, () => {
+        console.log('HTTP->HTTPS редирект запущен на порту 80');
+    });
+} else {
+    app.listen(PORT, () => {
+        console.log(`Сервер запущен на порту ${PORT}`);
+    });
+}
 
 // Экспортируем приложение
 export default app;

@@ -1,5 +1,9 @@
 // js/auth.js
 
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000'
+    : 'https://aitalim.kz';
+
 function validatePassword(password) {
     const minLength = 8;
 
@@ -117,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const password = document.getElementById('password').value;
 
                 try {
-                    console.log('Отправка запроса на:', 'http://localhost:3000/api/auth/login');
-                    const response = await fetch('http://localhost:3000/api/auth/login', {
+                    console.log('Отправка запроса на:', API_URL + '/api/auth/login');
+                    const response = await fetch(API_URL + '/api/auth/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -220,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Отправляемые данные:', registrationData);
 
             try {
-                const response = await fetch('http://localhost:3000/api/auth/register', {
+                const response = await fetch(API_URL + '/api/auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -392,7 +396,7 @@ document.getElementById('step3Form').addEventListener('submit', async function(e
     console.log('Отправляемые данные:', registrationData);
 
     try {
-        const response = await fetch('http://localhost:3000/api/auth/register', {
+        const response = await fetch(API_URL + '/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -522,7 +526,7 @@ function handleGoogleSignIn(response) {
             picture: payload.picture
         };
 
-        const endpoint = `http://localhost:3000/api/auth/google`;
+        const endpoint = API_URL + '/api/auth/google';
 
         fetch(endpoint, {
             method: 'POST',
