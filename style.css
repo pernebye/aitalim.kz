@@ -459,6 +459,42 @@ body {
     margin-right: 0;
 }
 
+/* Стили для иконок в карточках */
+.card-icon path {
+    fill: var(--color-dark-text);
+    transition: fill 0.3s ease;
+}
+
+/* Стили для иконок добавления */
+.add-icon path {
+    transition: fill 0.3s ease;
+}
+
+/* Темная тема для карточек */
+body.dark-theme .card {
+    background: var(--color-bg-lower);
+    border-color: var(--color-border);
+}
+
+body.dark-theme .card-text {
+    color: var(--color-dark-text);
+}
+
+/* Темная тема для иконок в карточках */
+body.dark-theme .card-icon path {
+    fill: var(--color-dark-text);
+}
+
+/* Оставляем синий цвет для иконки добавления даже в темной теме */
+body.dark-theme .add-icon path {
+    fill: var(--color-brand-blue);
+}
+
+/* При наведении на карточку в темной теме */
+body.dark-theme .card:hover {
+    background: var(--color-bg-hover);
+}
+
 /*------------------------------
   10) ВЕРХНИЕ ПРАВЫЕ КОНТРОЛЫ
 ------------------------------*/
